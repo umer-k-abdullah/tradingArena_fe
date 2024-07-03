@@ -14,7 +14,8 @@ function MainLayout() {
           loop
         >
           <source
-            src="../assets/videos/banner-background-video.mp4"
+            // src="../assets/videos/banner-background-video.mp4"
+            src="https://res.cloudinary.com/dseyjydkj/video/upload/v1720006702/Banner-Background-Video2_f0osfd.mp4"
             type="video/mp4"
           />
         </video>
