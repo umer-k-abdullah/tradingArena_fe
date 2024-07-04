@@ -64,7 +64,7 @@ function Sidebar() {
       {/* sidebar content */}
       <div
         className={`${
-          isHover ? "" : "-translate-x-[500px]"
+          isHover ? "" : "-translate-x-[500px] w-[0.1px]"
         } w-[224px] transit bg-[#01010199] h-full backdrop-blur-md flex flex-col justify-between sidebar-transition shadow-xl sidebar-shadow`}
       >
         <div>
