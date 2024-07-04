@@ -2,6 +2,7 @@ import React from "react";
 import LandingPage from "../modules/LandingPage/Pages/LandingPage";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import SignUp from "../modules/Auth/Pages/SignUp";
 
 function MainLayout() {
   return (
@@ -25,6 +26,7 @@ function MainLayout() {
           </div>
           <Sidebar />
           <LandingPage />
+          <SignUp/>
         </div>
       </div>
     </>

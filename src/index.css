@@ -31,3 +31,12 @@ body {
 .sidebar-transition {
   transition: all 0.7s ease-in-out;
 }
+.sidebar-shadow:hover{
+    box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
+}
+.auth-screen{
+    box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
+}
+.input-shadow{
+    box-shadow: 0 0 10px rgba(1, 227, 117, 0.8);
+}
