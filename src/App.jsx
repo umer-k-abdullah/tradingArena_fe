@@ -7,9 +7,8 @@ const App = () => {
   return (
     <div className="w-screen h-screen">
       <Routes>
-        <Route element={<MainLayout />}>
-          <Route index path="/" component={<LandingPage />} />
-          {/* <Route path="/another" component={AnotherPage} /> */}
+        <Route element={<MainLayout />} path="">
+          <Route path="" element={<LandingPage />} />
         </Route>
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import Textbox from "../../../components/Textbox";
 
 function SignUp() {
   return (
-    <div className="absolute top-0 right-0 flex w-[38.33%] h-screen backdrop-blur-md bg-[#010101B3] auth-screen">
+    <div className="absolute top-0 right-0 flex w-[33.00%] h-screen backdrop-blur-md bg-[#010101B3] auth-screen">
       <div className="h-full w-full">
         <form
           action=""
