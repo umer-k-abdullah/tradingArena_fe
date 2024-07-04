@@ -15,17 +15,11 @@ function MainLayout() {
           loop
         >
           <source
-            // src="../assets/videos/banner-background-video.mp4"
             src="https://res.cloudinary.com/dseyjydkj/video/upload/v1720006702/Banner-Background-Video2_f0osfd.mp4"
             type="video/mp4"
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-[#01E37580] via-[#010101b7] to-[#010101] opacity-100"></div>
-        {/* <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-          <Navbar/>
-          <Sidebar/>
-          <LandingPage />
-        </div> */}
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
           <div className="w-full max-w-screen-lg mx-auto">
             <Navbar />
