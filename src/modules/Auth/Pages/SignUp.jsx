@@ -3,23 +3,40 @@ import React from "react";
 import { string, object } from "yup";
 import { switchSingnin } from "../AuthSliderSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../utils/axios";
 
 const signupSchema = object({
   email: string().required(),
   password: string().required(),
-  retypePassword: string().required(),
+  confirmPassword: string().required(),
 });
 
 const SignUp = () => {
   const dispatch = useDispatch();
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await axiosInstance.post("/signUp", values);
+      console.log(response);
+      if (response.status == 201) {
+        toast.success("user register successfuly");
+        dispatch(switchSingnin());
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+    // console.log(values);
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      retypePassword: "",
+      confirmPassword: "",
     },
     validationSchema: signupSchema,
-    onSubmit: (values) => console.log(values),
+    onSubmit: handleSubmit,
   });
 
   const formFields = [
@@ -39,7 +56,7 @@ const SignUp = () => {
     },
     {
       type: "password",
-      name: "retypePassword",
+      name: "confirmPassword",
       placeholder: "Re-type password",
       leftIcon: "/assets/icons/lock.png",
       rightIcon: "/assets/icons/hide.png",
