@@ -3,9 +3,11 @@ import LandingPage from "../modules/LandingPage/Pages/LandingPage";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import SignUp from "../modules/Auth/Pages/SignUp";
+import Sigin from "../modules/Auth/Pages/Signin";
 import { Outlet } from "react-router-dom";
 import Slider from "../components/Slider";
 import { useSelector } from "react-redux";
+import Signin from "../modules/Auth/Pages/Signin";
 
 function MainLayout() {
   const showSlider = useSelector((state) => state.slider.showSlider);
@@ -33,7 +35,6 @@ function MainLayout() {
           <Sidebar />
           <Outlet />
           <Slider />
-          {/* {showSlider && <Slider />} */}
         </div>
       </div>
     </>
