@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useSyncExternalStore } from "react";
 import LandingPage from "../modules/LandingPage/Pages/LandingPage";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import SignUp from "../modules/Auth/Pages/SignUp";
+import { Outlet } from "react-router-dom";
+import Slider from "../components/Slider";
+import { useSelector } from "react-redux";
 
 function MainLayout() {
+  const showSlider = useSelector((state) => state.slider.showSlider);
+  console.log(showSlider);
+
   return (
     <>
-      <div className="relative w-full h-screen flex ">
+      <div className="relative w-full h-screen flex overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover object-center"
           autoPlay
@@ -24,7 +31,9 @@ function MainLayout() {
             <Navbar />
           </div>
           <Sidebar />
-          <LandingPage />
+          <Outlet />
+          <Slider />
+          {/* {showSlider && <Slider />} */}
         </div>
       </div>
     </>

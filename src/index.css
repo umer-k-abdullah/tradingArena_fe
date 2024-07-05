@@ -31,3 +31,18 @@ body {
 .sidebar-transition {
   transition: all 0.7s ease-in-out;
 }
+.slider-overlay-transition{
+  transition: all 0.3s ease-in-out;
+}
+.slider-transition {
+  transition: all 0.5s ease-in-out;
+}
+.sidebar-shadow:hover{
+    box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
+}
+.auth-screen{
+    box-shadow:-10px 0 10px -5px rgba(1, 227, 117, 0.8);
+}
+.input-shadow{
+    box-shadow: 0 0 10px rgba(1, 227, 117, 0.8);
+}
