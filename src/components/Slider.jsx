@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AuthForm from "../modules/Auth/Pages/AuthForm";
 import { IoClose } from "react-icons/io5";
 import { handleOnCloseSlider } from "../app/slider";
+import ForgotPassword from "../modules/Auth/Pages/ForgotPassword";
 
 const Slider = () => {
   const showSlider = useSelector((state) => state.slider.showSlider);
@@ -57,6 +58,7 @@ const Slider = () => {
       ></div>
       <div
         className={`absolute top-0 right-0 w-[33%] h-screen bg-[#010101B2] backdrop-blur-md auth-screen z-10 flex flex-col justify-start items-start gap-[10px] p-10 ${
+          //
           showSlider && firstDivTransitioned
             ? "translate-x-0"
             : "translate-x-[105%]"
@@ -71,6 +73,7 @@ const Slider = () => {
         </div>
         <div
           className={`w-[83%] absolute top-10 left-12 ${
+            //
             showSlider && firstDivTransitioned && secondDivTransitioned
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-[20px]"
