@@ -31,18 +31,30 @@ body {
 .sidebar-transition {
   transition: all 0.7s ease-in-out;
 }
-.slider-overlay-transition{
-  transition: all 0.3s ease-in-out;
+.sidebar-shadow:hover {
+  box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
 }
+.auth-screen {
+  box-shadow: -10px 0 10px -5px rgba(1, 227, 117, 0.8);
+}
+.input-shadow {
+  box-shadow: 0 0 10px rgba(1, 227, 117, 0.8);
+}
+
+/* slider animations */
+
+.slider-overlay-transition {
+  transition: all 0.7s ease-in-out;
+}
+
 .slider-transition {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
-.sidebar-shadow:hover{
-    box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
-}
-.auth-screen{
-    box-shadow:-10px 0 10px -5px rgba(1, 227, 117, 0.8);
-}
-.input-shadow{
-    box-shadow: 0 0 10px rgba(1, 227, 117, 0.8);
+
+/* checkbox */
+input[type="checkbox"].appearance-none:checked {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17L4 12' stroke='%2301e375' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
 }

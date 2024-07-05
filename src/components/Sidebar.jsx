@@ -20,11 +20,10 @@ function Sidebar() {
   return (
     <div
       className="h-screen fixed top-0 left-0 flex justify-normal items-start"
-      onPointerEnter={() => setIsHover(true)}
       onPointerLeave={() => setIsHover(false)}
     >
       {/* sidebar icons */}
-      <div className="w-[71px] bg-[#010101CC] h-full flex flex-col justify-between items-center z-10 backdrop-blur-lg ">
+      <div className="w-[71px] bg-[#010101CC] h-full flex flex-col justify-between items-center z-10 backdrop-blur-lg " onPointerEnter={() => setIsHover(true)}>
         <div className="flex flex-col justify-normal items-start">
           <div className="h-[65px]"></div>
           <div className="flex flex-col items-start gap-[30px] mt-5">
@@ -64,7 +63,7 @@ function Sidebar() {
       {/* sidebar content */}
       <div
         className={`${
-          isHover ? "" : "-translate-x-[500px] w-[0.1px]"
+          isHover ? "" : "-translate-x-[500px]"
         } w-[224px] transit bg-[#01010199] h-full backdrop-blur-md flex flex-col justify-between sidebar-transition shadow-xl sidebar-shadow`}
       >
         <div>
