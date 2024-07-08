@@ -7,6 +7,10 @@ export default {
         themeGreen: "#01E375",
         themeBlack: "#010101",
       },
+      fontFamily: {
+        "zen-dots": ['"Zen Dots"', "cursive"],
+        montserrat: ['"Montserrat"', "sans-serif"],
+      },
     },
   },
   plugins: [],
