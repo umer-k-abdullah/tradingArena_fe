@@ -5,14 +5,17 @@ import LandingPage from "./modules/LandingPage/Pages/LandingPage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FormsLayout from "./layouts/FormsLayout";
+import SignUp from "./modules/Auth/Pages/SignUp";
 const App = () => {
   return (
     <div className="w-screen h-screen">
       <ToastContainer />
       <Routes>
-        <Route element={<MainLayout />} path="">
+        {/* <Route element={<MainLayout />} path="">
           <Route path="" element={<LandingPage />} />
-        </Route>
+        </Route> */}
+        <Route element={<FormsLayout />} path=""></Route>
       </Routes>
     </div>
   );

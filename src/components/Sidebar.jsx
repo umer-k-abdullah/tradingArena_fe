@@ -99,17 +99,6 @@ function Sidebar() {
                 <FaVolumeMute />
               </span>
             )}
-
-            {/* <img
-              className="h-7 cursor-pointer"
-              src={`${
-                !isMute
-                  ? "/assets/icons/sound-on.png"
-                  : "/assets/icons/enable-sound.png"
-              }`}
-              alt="profile-icon"
-              onClick={handleSound}
-            /> */}
           </div>
         </div>
       </div>

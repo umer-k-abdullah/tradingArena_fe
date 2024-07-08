@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         "zen-dots": ['"Zen Dots"', "cursive"],
         montserrat: ['"Montserrat"', "sans-serif"],
+        poppins: ["poppins", "sans-serif"],
       },
     },
   },
