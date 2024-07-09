@@ -111,7 +111,7 @@ const Slider = () => {
           firstDivTransitioned
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-[20px]"
-        } transition duration-1000 ease-in-out w-full h-full flex justify-center items-center`}
+        } transition duration-1000 ease-in-out w-full h-full flex justify-center items-center overflow-hidden`}
       >
         <AuthForm />
       </div>
