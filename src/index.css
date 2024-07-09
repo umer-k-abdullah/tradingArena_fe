@@ -62,3 +62,7 @@ input[type="checkbox"].appearance-none:checked {
 .gray-shadow{
   box-shadow: 0 0 15px rgba(138, 138, 138, 0.8);
 }
+
+.card-shadow{
+  box-shadow: 0 0 5px rgba(138, 138, 138, 0.8);
+}

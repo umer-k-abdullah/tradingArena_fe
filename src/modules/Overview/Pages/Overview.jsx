@@ -31,7 +31,7 @@ function Overview() {
   return (
     <div className="h-full w-full pt-20 pl-36 gap-5 flex flex-col">
       <div className="mx-auto w-[75%]">
-        <h1 className="font-zen-dots text-white text-3xl">OVERVIEW</h1>
+        <h1 className="font-zen-dots text-white text-3xl">DASHBOARD</h1>
       </div>
       <div className="mx-auto flex w-[75%] gap-6 h-1/3">
         <TopCard
@@ -59,6 +59,15 @@ function Overview() {
           ))}
         </div>
         <div className="flex flex-col gap-3">
+          {match1Stats.map((ele) => (
+            <StatsCard
+              timeStamp={ele.timeStamp}
+              matchStatus={ele.matchStatus}
+              battleTime={ele.battleTime}
+              skillScore={ele.skillScore}
+              totalProfit={ele.totalProfit}
+            />
+          ))}
           {match1Stats.map((ele) => (
             <StatsCard
               timeStamp={ele.timeStamp}

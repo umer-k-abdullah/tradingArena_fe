@@ -20,6 +20,9 @@ function Sidebar() {
   const handleIconClick = (index) => {
     setActiveIndex(index);
   };
+  const handleLinkClick = (index) =>{
+    setActiveIndex(index);
+  }
 
   const handleSound = () => {
     setIsMute(!isMute);
@@ -125,8 +128,8 @@ function Sidebar() {
           </div>
           <div className="flex flex-col gap-[30px] mt-5">
             {sidebarTopLinks.map((ele, index) => (
-              <div key={index} className="h-7 flex items-center -mt-[1px] ml-4" onClick={() => handleIconClick(index)}>
-                <p className="font-bold text-white leading-[32.02px] text-[20px] cursor-pointer">
+              <div key={index} className="h-7 flex items-center -mt-[1px] ml-4" >
+                <p className={`font-bold ${activeIndex === index ? "text-themeGreen" : "text-white"}  leading-[32.02px] text-[20px] cursor-pointer`} onClick={() => handleIconClick(index)}>
                   {ele.name}
                 </p>
               </div>
