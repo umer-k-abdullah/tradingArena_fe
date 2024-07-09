@@ -14,7 +14,7 @@ const signupSchema = object({
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
+  //
   const handleSubmit = async (values) => {
     try {
       const response = await axiosInstance.post("/signUp", values);
@@ -26,9 +26,8 @@ const SignUp = () => {
     } catch (error) {
       toast.error(error.message);
     }
-    // console.log(values);
   };
-
+  //
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,7 +37,7 @@ const SignUp = () => {
     validationSchema: signupSchema,
     onSubmit: handleSubmit,
   });
-
+  //
   const formFields = [
     {
       type: "email",
@@ -62,7 +61,7 @@ const SignUp = () => {
       rightIcon: "/assets/icons/hide.png",
     },
   ];
-
+  //
   const switchMode = () => {
     dispatch(switchSingnin());
   };
@@ -70,15 +69,15 @@ const SignUp = () => {
   const { touched, error, values } = formik;
   return (
     <div className="">
-      <h1 className="font-bold text-[40px] leading-[48.76px] text-center -mt-3  mb-6 text-white">
+      <h1 className="font-zen-dots text-[40px] leading-[48.76px] text-center mb-3 text-white">
         SIGN UP
       </h1>
-      <FormikProvider value={formik}>
-        <Form className="flex flex-col justify-center items-center gap-[15px]">
+      <FormikProvider className="" value={formik}>
+        <Form className="flex flex-col justify-center items-center gap-[20px]">
           {formFields.map((ele, index) => (
             <div
               key={index}
-              className="w-full h-[77px] flex justify-normal gap-[10px] items-center border-2 border-themeGreen input-shadow rounded-[10px] px-3"
+              className="w-[500px] h-[77px] flex justify-normal gap-[10px] items-center input-shadow rounded-[10px] px-3"
             >
               <img
                 src={ele.leftIcon}
@@ -96,14 +95,14 @@ const SignUp = () => {
           ))}
           <button
             type="submit"
-            className="w-full h-[77px] bg-themeGreen text-black input-shadow rounded-[10px] font-bold text-[20px] leading-[24.38px]"
+            className="font-zen-dots w-full h-[77px] bg-themeGreen text-black form-btn-shadow rounded-[10px] font-bold text-[20px] leading-[24.38px]"
           >
             SIGN UP
           </button>
           <p className="text-white">
             Already have an account?{" "}
             <span
-              className="text-themeGreen font-bold underline cursor-pointer"
+              className="text-themeGreen font-bold underline cursor-pointer font-zen-dots"
               onClick={switchMode}
             >
               Sign In Now
@@ -114,13 +113,13 @@ const SignUp = () => {
             <span className="text-white">Or</span>
             <hr className="w-[35%] border border-gray-300" />
           </div>
-          <div className="w-full h-[77px] border-2 border-themeGreen rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
+          <div className="w-full h-[77px] rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
             <img className="h-7" src="assets/icons/Google-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               Continue with Google
             </p>
           </div>
-          <div className="w-full h-[77px] border-2 border-themeGreen rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
+          <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
             <img className="h-9" src="assets/icons/facebook-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               {" "}

@@ -91,7 +91,7 @@
 import React, { useEffect, useState } from "react";
 import AuthForm from "../modules/Auth/Pages/AuthForm";
 
-const Slider = ({ children }) => {
+const Slider = () => {
   //for initating animation when component loads
   const [slide, setSlide] = useState(false);
   useEffect(() => {
@@ -111,10 +111,9 @@ const Slider = ({ children }) => {
           firstDivTransitioned
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-[20px]"
-        } transition duration-1000 ease-in-out`}
+        } transition duration-1000 ease-in-out w-full h-full flex justify-center items-center`}
       >
         <AuthForm />
-        {/* {children} */}
       </div>
     </div>
   );

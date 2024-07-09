@@ -48,15 +48,15 @@ const Signin = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-[40px] leading-[48.76px] text-center -mt-3  mb-6 text-white">
+      <h1 className="font-zen-dots text-[40px] leading-[48.76px] text-center mb-3 text-white">
         SIGN IN
       </h1>
       <FormikProvider value={formik}>
-        <Form className="flex flex-col justify-center items-center gap-[15px]">
+        <Form className="flex flex-col justify-center items-center gap-[20px]">
           {formFields.map((ele, index) => (
             <div
               key={index}
-              className="w-full h-[77px] flex justify-normal gap-[10px] items-center border-2 border-themeGreen input-shadow rounded-[10px] px-3"
+              className=" h-[77px] flex justify-normal gap-[10px] items-center  input-shadow rounded-[10px] px-3 w-[500px]"
             >
               <img
                 src={ele.leftIcon}
@@ -78,26 +78,26 @@ const Signin = () => {
                 type="checkbox"
                 name="rememberMe"
                 id="remember"
-                className="appearance-none h-7 w-7 bg-black border-2 border-themeGreen input-shadow rounded-lg cursor-pointer"
+                className="appearance-none h-7 w-7 bg-black border-2 border-[#EDF1FA] rounded-lg cursor-pointer"
               />
               <p className="font-medium text-white text-[18px]leading-[28.82px]">
                 Remember me
               </p>
             </div>
-            <p className="underline font-bold text-themeGreen text-[18px] leading-[28.82px]">
-              Forgot your password?
+            <p className="underline font-semibold text-white font-poppins text-[18px] cursor-pointer leading-[28.82px]">
+              forgot your password?
             </p>
           </div>
           <button
             type="submit"
-            className="w-full h-[77px] bg-themeGreen text-black input-shadow rounded-[10px] font-bold text-[20px] leading-[24.38px]"
+            className="w-full h-[77px] bg-themeGreen text-black form-btn-shadow rounded-[10px] font-bold text-[20px] leading-[24.38px]"
           >
             SIGN IN
           </button>
           <p className="text-white">
             Don't have an account?{" "}
             <span
-              className="text-themeGreen font-bold underline cursor-pointer"
+              className="text-themeGreen font-bold underline cursor-pointer font-zen-dots"
               onClick={switchMode}
             >
               Sign Up Now
@@ -108,13 +108,13 @@ const Signin = () => {
             <span className="text-white">Or</span>
             <hr className="w-[35%] border border-gray-300" />
           </div>
-          <div className="w-full h-[77px] border-2 border-themeGreen rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
+          <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
             <img className="h-7" src="assets/icons/Google-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               Continue with Google
             </p>
           </div>
-          <div className="w-full h-[77px] border-2 border-themeGreen rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
+          <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
             <img className="h-9" src="assets/icons/facebook-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               {" "}

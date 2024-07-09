@@ -15,9 +15,7 @@ const FormsLayout = () => {
           Practice your strategy, Prove your dominance.
         </p>
       </div>
-      <Slider>
-        <Outlet />
-      </Slider>
+      <Slider />
     </div>
   );
 };
