@@ -6,6 +6,7 @@ export default {
       colors: {
         themeGreen: "#01E375",
         themeBlack: "#010101",
+        themeGray: "#EDF1FA",
       },
       fontFamily: {
         "zen-dots": ['"Zen Dots"', "cursive"],
