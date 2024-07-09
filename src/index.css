@@ -58,3 +58,7 @@ input[type="checkbox"].appearance-none:checked {
   background-repeat: no-repeat;
   background-size: 80% 80%;
 }
+
+.gray-shadow{
+  box-shadow: 0 0 15px rgba(138, 138, 138, 0.8);
+}
