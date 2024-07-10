@@ -16,7 +16,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const handleSubmit = (values) => {
     console.log(values);
-    navigate("/overview");
+    navigate("/dashboard");
   };
 
   const formik = useFormik({

@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Overview from "./modules/Overview/Pages/Overview";
 import FormsLayout from "./layouts/FormsLayout";
 import SignUp from "./modules/Auth/Pages/SignUp";
+import FriendsPage from "./modules/Friends/Pages/FriendsPage";
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
       <Routes>
         <Route element={<FormsLayout />} path=""></Route>
         <Route element={<MainLayout />} path="">
-          <Route path="overview" element={<Overview />} />
+          <Route path="dashboard" element={<Overview />} />
+          <Route path="social" element={<FriendsPage />} />
         </Route>
       </Routes>
     </div>

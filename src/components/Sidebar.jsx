@@ -11,19 +11,20 @@ import {
 } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const [isMute, setIsMute] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleIconClick = (index) => {
     setActiveIndex(index);
   };
-  const handleLinkClick = (index) =>{
+  const handleLinkClick = (index) => {
     setActiveIndex(index);
-  }
-
+  };
   const handleSound = () => {
     setIsMute(!isMute);
   };
@@ -33,33 +34,45 @@ function Sidebar() {
       name: "Dashboard",
       link: "/assets/icons/profile.png",
       icon: <TbLayoutDashboardFilled />,
+      path: "/dashboard",
     },
     {
       name: "History Log",
       link: "/assets/icons/log-data.png",
       icon: <FaHistory />,
+      // path: "/history_log",
     },
     {
       name: "Leaderboard",
       link: "/assets/icons/podium.png",
       icon: <FaRankingStar />,
+      // path: "/leadersboard",
+      path: "/dashboard",
     },
     {
       name: "Friends",
       link: "/assets/icons/friends.png",
       icon: <FaUserFriends />,
+      path: "/social",
     },
     {
       name: "Battle Arena",
       link: "/assets/icons/battle.png",
       icon: <RiSwordFill />,
+      path: "/dashboard",
     },
     {
       name: "Invitations",
       link: "/assets/icons/invitations.png",
       icon: <FaEnvelopeOpenText />,
+      path: "/dashboard",
     },
   ];
+
+  const handleClick = (index) => {
+    setActiveIndex(index);
+    navigate(sidebarTopLinks[index].path);
+  };
 
   return (
     <div
@@ -76,7 +89,14 @@ function Sidebar() {
           <div className="flex flex-col items-start gap-[37px] mt-7">
             {sidebarTopLinks.map((ele, index) => (
               <div key={index} className="flex justify-normal items-center">
-                <span className={`${activeIndex === index ? "text-themeGreen" : "text-white"} text-xl cursor-pointer`} onClick={() => handleIconClick(index)}>{ele.icon}</span>
+                <span
+                  className={`${
+                    activeIndex === index ? "text-themeGreen" : "text-white"
+                  } text-xl cursor-pointer`}
+                  onClick={() => handleClick(index)}
+                >
+                  {ele.icon}
+                </span>
                 {/* <img
                   className="h-7 cursor-pointer"
                   src={ele.icon}
@@ -117,8 +137,13 @@ function Sidebar() {
           </div>
           <div className="flex flex-col gap-[30px] mt-5">
             {sidebarTopLinks.map((ele, index) => (
-              <div key={index} className="h-7 flex items-center -mt-[1px] ml-4" >
-                <p className={`font-bold ${activeIndex === index ? "text-themeGreen" : "text-white"}  leading-[32.02px] text-[20px] cursor-pointer`} onClick={() => handleIconClick(index)}>
+              <div key={index} className="h-7 flex items-center -mt-[1px] ml-4">
+                <p
+                  className={`font-bold ${
+                    activeIndex === index ? "text-themeGreen" : "text-white"
+                  }  leading-[32.02px] text-[20px] cursor-pointer`}
+                  onClick={() => handleClick(index)}
+                >
                   {ele.name}
                 </p>
               </div>
