@@ -25,6 +25,7 @@ const App = () => {
         <Route element={<MainLayout />} path="">
           <Route path="dashboard" element={<Overview />} />
           <Route path="social" element={<FriendsPage />} />
+
         </Route>
       </Routes>
     </div>

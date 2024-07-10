@@ -36,18 +36,18 @@ function Overview() {
       </div>
       <div className="mx-auto flex w-[75%] gap-6 h-1/3">
         <TopCard
-          icon={"assets/icons/stats.png"}
+          icon={"/assets/icons/win-streak.png"}
           label={"Skill Score"}
           value={6545}
           inc_dec={"+23%"}
         />
         <TopCard
-          icon={"assets/icons/win-streak.png"}
+          icon={"/assets/icons/stats.png"}
           label={"Win Streaks"}
           inc_dec={"+5"}
         />
         <TopCard
-          icon={"assets/icons/win-rate.png"}
+          icon={"/assets/icons/win-rate.png"}
           label={"Win Rate"}
           value={"88%"}
           inc_dec={"+12%"}
