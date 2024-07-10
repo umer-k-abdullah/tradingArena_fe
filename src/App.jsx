@@ -14,7 +14,7 @@ const App = () => {
     <div className="w-screen h-screen">
       <ToastContainer />
       <Routes>
-        <Route element={<MainLayout />} path="">
+        <Route element={<MainLayout />} path="main">
           {/* <Route path="" element={<LandingPage />} /> */}
           <Route path="overview" element={<Overview />} />
         </Route>

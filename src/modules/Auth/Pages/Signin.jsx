@@ -3,6 +3,7 @@ import React from "react";
 import { string, object, boolean } from "yup";
 import { switchSignup } from "../AuthSliderSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const signinSchema = object({
   identifier: string().required(),
@@ -12,6 +13,11 @@ const signinSchema = object({
 
 const Signin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = (values) => {
+    console.log(values);
+    navigate("/main/overview");
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -20,7 +26,7 @@ const Signin = () => {
       rememberMe: false,
     },
     validationSchema: signinSchema,
-    onSubmit: (values) => console.log(values),
+    onSubmit: handleSubmit  ,
   });
 
   const formFields = [
