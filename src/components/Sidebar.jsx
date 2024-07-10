@@ -12,24 +12,29 @@ import {
 import { FaRankingStar } from "react-icons/fa6";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { LuPin, LuPinOff } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const [isMute, setIsMute] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [pin, setIsPin] = useState(false);
-
-  const handleIconClick = (index) => {
+  const navigate = useNavigate();
+  // const handleIconClick = (index) => {
+  //   setActiveIndex(index);
+  // };
+  // const handleLinkClick = (index) => {
+  //   setActiveIndex(index);
+  // };
+  const handleClick = (index, path) => {
     setActiveIndex(index);
-  };
-  const handleLinkClick = (index) => {
-    setActiveIndex(index);
+    navigate(path);
   };
   const handleSound = () => {
     setIsMute(!isMute);
   };
   const handlePinClick = () => {
-    setIsPin(!pin)
+    setIsPin(!pin);
   };
 
   const sidebarTopLinks = [
@@ -37,31 +42,37 @@ function Sidebar() {
       name: "Dashboard",
       link: "/assets/icons/profile.png",
       icon: <TbLayoutDashboardFilled />,
+      path: "/dashboard",
     },
     {
       name: "Battle Arena",
       link: "/assets/icons/battle.png",
       icon: <RiSwordFill />,
+      path: "/dashboard",
     },
     {
       name: "History Log",
       link: "/assets/icons/log-data.png",
       icon: <FaHistory />,
+      path: "/dashboard",
     },
     {
       name: "Leaderboard",
       link: "/assets/icons/podium.png",
       icon: <FaRankingStar />,
+      path: "/dashboard",
     },
     {
       name: "Friends",
       link: "/assets/icons/friends.png",
       icon: <FaUserFriends />,
+      path: "/social",
     },
     {
       name: "Invitations",
       link: "/assets/icons/invitations.png",
       icon: <FaEnvelopeOpenText />,
+      path: "/dashboard",
     },
   ];
 
@@ -89,7 +100,7 @@ function Sidebar() {
                   className={`${
                     activeIndex === index ? "text-themeGreen" : "text-white"
                   } text-xl cursor-pointer`}
-                  onClick={() => handleIconClick(index)}
+                  onClick={() => handleClick(index, ele.path)}
                 >
                   {ele.icon}
                 </span>
@@ -128,10 +139,11 @@ function Sidebar() {
         } w-[200px] transit bg-[#0d0d0d] h-full flex flex-col justify-between sidebar-transition `}
       >
         {/* Pin Button */}
-        <div className="flex justify-center items-center absolute -right-8 bg-[#0d0d0d] w-8 h-10 rounded-r-lg text-white text-xl" onClick={handlePinClick}>
-          <i>
-            {pin ? <LuPin/> : <LuPinOff />}
-          </i>
+        <div
+          className="flex justify-center items-center absolute -right-8 bg-[#0d0d0d] w-8 h-10 rounded-r-lg text-white text-xl"
+          onClick={handlePinClick}
+        >
+          <i>{pin ? <LuPin /> : <LuPinOff />}</i>
         </div>
         <div>
           <div className="mt-[6px] mb-[35px] h-[50px] ml-1">
@@ -148,7 +160,7 @@ function Sidebar() {
                   className={`font-poppins ${
                     activeIndex === index ? "text-themeGreen" : "text-white"
                   }  leading-[32.02px] text-[20px] cursor-pointer`}
-                  onClick={() => handleIconClick(index)}
+                  onClick={() => handleClick(index, ele.path)}
                 >
                   {ele.name}
                 </p>
