@@ -140,7 +140,7 @@ function Sidebar() {
       >
         {/* Pin Button */}
         <div
-          className="flex justify-center items-center absolute -right-8 bg-[#0d0d0d] w-8 h-10 rounded-r-lg text-white text-xl"
+          className="flex justify-center items-center cursor-pointer absolute -right-8 bg-[#0d0d0d] w-8 h-10 rounded-r-lg text-white text-xl"
           onClick={handlePinClick}
         >
           <i>{pin ? <LuPin /> : <LuPinOff />}</i>
