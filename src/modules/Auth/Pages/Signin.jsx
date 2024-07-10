@@ -1,8 +1,7 @@
 import { FormikProvider, useFormik, Form, Field } from "formik";
 import React from "react";
 import { string, object, boolean } from "yup";
-import { switchSignup } from "../AuthSliderSlice";
-import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 
 const signinSchema = object({
@@ -12,11 +11,11 @@ const signinSchema = object({
 });
 
 const Signin = () => {
-  const dispatch = useDispatch();
+  
   const navigate = useNavigate();
   const handleSubmit = (values) => {
     console.log(values);
-    navigate("/main/overview");
+    navigate("/dashboard");
   };
 
   const formik = useFormik({
@@ -26,7 +25,7 @@ const Signin = () => {
       rememberMe: false,
     },
     validationSchema: signinSchema,
-    onSubmit: handleSubmit  ,
+    onSubmit: handleSubmit,
   });
 
   const formFields = [
@@ -45,10 +44,6 @@ const Signin = () => {
       rightIcon: "/assets/icons/hide.png",
     },
   ];
-
-  const switchMode = () => {
-    dispatch(switchSignup());
-  };
 
   const { touched, error, values } = formik;
 
@@ -90,7 +85,10 @@ const Signin = () => {
                 Remember me
               </p>
             </div>
-            <p className="underline font-semibold text-white font-poppins text-[18px] cursor-pointer leading-[28.82px]">
+            <p
+              className="underline font-semibold text-white font-poppins text-[18px] cursor-pointer leading-[28.82px]"
+              onClick={() => navigate("/auth/forgot_password")}
+            >
               forgot your password?
             </p>
           </div>
@@ -104,7 +102,7 @@ const Signin = () => {
             Don't have an account?{" "}
             <span
               className="text-themeGreen font-bold underline cursor-pointer font-zen-dots"
-              onClick={switchMode}
+              onClick={() => navigate("/auth/signup")}
             >
               Sign Up Now
             </span>
@@ -115,13 +113,13 @@ const Signin = () => {
             <hr className="w-[35%] border border-gray-300" />
           </div>
           <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
-            <img className="h-7" src="assets/icons/Google-icon.png" alt="" />
+            <img className="h-7" src="/assets/icons/Google-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               Continue with Google
             </p>
           </div>
           <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
-            <img className="h-9" src="assets/icons/facebook-icon.png" alt="" />
+            <img className="h-9" src="/assets/icons/facebook-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               {" "}
               Continue with Facebook

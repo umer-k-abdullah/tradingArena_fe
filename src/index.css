@@ -35,7 +35,7 @@ body {
   box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
 }
 .auth-screen {
-  box-shadow: -10px 0 10px -5px rgba(1, 227, 117, 0.8);
+  box-shadow: 0 0 15px #edf1fa;
 }
 .input-shadow {
   box-shadow: 0 0 8px #edf1fa;
