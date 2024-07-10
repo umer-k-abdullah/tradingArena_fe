@@ -1,71 +1,58 @@
-// import { FormikProvider, useFormik, Form, Field } from "formik";
-// import React from "react";
-// import { object, string } from "yup";
-
-// const forgotPasswordSchema = object({
-//   email: string().email().required(),
-// });
-// const ForgotPassword = () => {
-//   const formik = useFormik({
-//     initialValues: {
-//       email: "",
-//     },
-//     validationSchema: forgotPasswordSchema,
-//     onSubmit: (values) => console.log(values),
-//   });
-
-//   const { error, values, touched } = formik;
-
-//   return (
-//     <div className="w-full">
-//       <div className=" mt-40 flex flex-col justify-center items-center gap-[30px]">
-//         <img
-//           src="/assets/icons/forgot-password.png"
-//           className="mx-auto"
-//           alt=""
-//         />
-//         <h1 className="font-bold text-[30px] text-white">
-//           Forgot your password?
-//         </h1>
-//         <p className="w-full text-center text-white font-medium text-[18px] leading-[28.82px]">
-//           Enter the email associated with your account so we can send you a link
-//           to reset your password
-//         </p>
-//         <FormikProvider value={formik}>
-//           <Form>
-//             <div
-//               //   key={index}
-//               className="flex justify-normal gap-[10px] items-center border-2 border-themeGreen input-shadow rounded-[10px] px-3 py-3"
-//             >
-//               <img
-//                 src="/assets/icons/profile.png"
-//                 className="w-[30px] h-[30px] opacity-50"
-//                 alt=""
-//               />
-//               <Field
-//                 name="email"
-//                 type="email"
-//                 className="h-[30px] w-[80%] bg-transparent outline-none text-bold text-[18px] leading-[28.82px] text-white"
-//                 placeholder="Email address"
-//               />
-//               <img
-//                 src="/assets/icons/info.png"
-//                 className="opacity-50 w-[22px]"
-//                 alt=""
-//               />
-//             </div>
-//           </Form>
-//         </FormikProvider>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ForgotPassword;
+import { Field, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { object, string } from "yup";
+
+const forgotPasswordSchema = object({
+  email: string().email().required(),
+});
 
 const ForgotPassword = () => {
-  return <div>ForgotPassword</div>;
+  const navigate = useNavigate();
+
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: forgotPasswordSchema,
+    onSubmit: (values) => handleSubmit(values),
+  });
+
+  const { values, error, touched } = formik;
+
+  return (
+    <div className="font-poppins flex flex-col justify-center items-center p-10 gap-[25px] h-[58%] w-[89%] text-white">
+      <img src="/assets/icons/forgot-password.png" alt="" />
+      <h6 className="text-[30px] leading-[45px]">Forgot Your Password?</h6>
+      <p className="text-[18px] leading-[27px] text-center">
+        Enter the email associated with your account so we can send you a link
+        to reset your password
+      </p>
+      <FormikProvider value={formik}>
+        <Form className="w-full flex flex-col justify-start items-start gap-[25px]">
+          <div className="w-[100%] h-[77px] border-[2px] px-4 border-[#EDF1FA80] rounded-[10px] gap-3 flex justify-normal items-center">
+            <img src="/assets/icons/email_2.png" alt="" />
+            <Field
+              name="email"
+              className="outline-none bg-transparent"
+              placeholder="Email address"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-[100%] h-[77px] rounded-[10px] gap-3 bg-themeGreen flex justify-center items-center form-btn-shadow text-[20px] text-black leading-[30px] font-medium"
+            onClick={() => navigate("/auth/reset_password")}
+          >
+            Get Email
+          </button>
+        </Form>
+      </FormikProvider>
+    </div>
+  );
 };
 
 export default ForgotPassword;

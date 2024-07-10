@@ -1,10 +1,9 @@
 import { FormikProvider, useFormik, Form, Field } from "formik";
 import React from "react";
 import { string, object } from "yup";
-import { switchSingnin } from "../AuthSliderSlice";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const signupSchema = object({
   email: string().required(),
@@ -13,8 +12,7 @@ const signupSchema = object({
 });
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-  //
+  const navigate = useNavigate();
   const handleSubmit = async (values) => {
     try {
       const response = await axiosInstance.post("/signUp", values);
@@ -27,7 +25,7 @@ const SignUp = () => {
       toast.error(error.message);
     }
   };
-  //
+  
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -37,7 +35,7 @@ const SignUp = () => {
     validationSchema: signupSchema,
     onSubmit: handleSubmit,
   });
-  //
+  
   const formFields = [
     {
       type: "email",
@@ -61,12 +59,9 @@ const SignUp = () => {
       rightIcon: "/assets/icons/hide.png",
     },
   ];
-  //
-  const switchMode = () => {
-    dispatch(switchSingnin());
-  };
-
+  
   const { touched, error, values } = formik;
+  
   return (
     <div className="">
       <h1 className="font-zen-dots text-[40px] leading-[48.76px] text-center mb-3 text-white">
@@ -103,7 +98,7 @@ const SignUp = () => {
             Already have an account?{" "}
             <span
               className="text-themeGreen font-bold underline cursor-pointer font-zen-dots"
-              onClick={switchMode}
+              onClick={() => navigate("/auth/signin")}
             >
               Sign In Now
             </span>
@@ -114,13 +109,13 @@ const SignUp = () => {
             <hr className="w-[35%] border border-gray-300" />
           </div>
           <div className="w-full h-[77px] rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[30px] cursor-pointer">
-            <img className="h-7" src="assets/icons/Google-icon.png" alt="" />
+            <img className="h-7" src="/assets/icons/Google-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               Continue with Google
             </p>
           </div>
           <div className="w-full h-[77px]  rounded-[10px] input-shadow px-10 flex justify-normal items-center gap-[25px] cursor-pointer">
-            <img className="h-9" src="assets/icons/facebook-icon.png" alt="" />
+            <img className="h-9" src="/assets/icons/facebook-icon.png" alt="" />
             <p className="text-white font-medium text-[20px] leading-[32.02px]">
               {" "}
               Continue with Facebook
