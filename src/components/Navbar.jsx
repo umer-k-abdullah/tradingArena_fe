@@ -1,39 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { switchSignup, switchSingnin } from "../modules/Auth/AuthSliderSlice";
-import { handleSlider } from "../app/slider";
+import { FaBell, FaCaretDown } from "react-icons/fa";
+import { RxAvatar } from "react-icons/rx";
+
 function Navbar() {
-  const dispatch = useDispatch();
-  const handleClick = (mode) => {
-    dispatch(handleSlider());
-    switch (mode) {
-      case "signup":
-        dispatch(switchSignup());
-        break;
-      case "signin":
-        dispatch(switchSingnin());
-        break;
-      default:
-        break;
-    }
-  };
   return (
     <div className="absolute top-0 left-0 pl-[75px] w-screen h-[80px] z-11  flex justify-between px-10 items-center">
       <div>
-        <img src="/assets/images/logo-main.png" alt="" />
+        <img src="/assets/images/logo-main.png" alt="" className="sr-only" />
       </div>
       <div className="flex gap-4">
-        <div
-          className="w-[120px] h-[45px] rounded-lg bg-[#01E375] flex justify-center items-center font-bold game-btn-shadow cursor-pointer"
-          onClick={() => handleClick("signin")}
-        >
-          Sign In
+        <div className="w-11 h-11 rounded-full border border-[#EDF1FA] flex justify-center items-center gray-shadow">
+          <i className="text-white text-xl"><FaBell/></i>
         </div>
-        <div
-          className="w-[120px] h-[45px] rounded-lg bg-[#010101] text-white flex justify-center items-center font-bold game-btn-shadow cursor-pointer border-2 border-[#01E375]"
-          onClick={() => handleClick("signup")}
-        >
-          Sign Up
+        <div className="w-40 h-11 bg-[#010101] text-white flex justify-between items-center font-poppins border cursor-pointer border-[#EDF1FA] gray-shadow rounded-full pr-3">
+          <div className="rounded-full w-11 h-full flex justify-center items-center border border-[#EDF1FA] bg-[#161616]"><i className="text-4xl"><RxAvatar/></i></div>
+          <span>Adam S.</span>
+          <i><FaCaretDown /></i>
         </div>
       </div>
     </div>
