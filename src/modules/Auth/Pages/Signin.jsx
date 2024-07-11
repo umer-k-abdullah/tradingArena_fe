@@ -87,7 +87,7 @@ const Signin = () => {
             </div>
             <p
               className="underline font-semibold text-white font-poppins text-[18px] cursor-pointer leading-[28.82px]"
-              onClick={() => navigate("/auth/forgot_password")}
+              onClick={() => navigate("/forgot_password")}
             >
               forgot your password?
             </p>
@@ -102,7 +102,7 @@ const Signin = () => {
             Don't have an account?{" "}
             <span
               className="text-themeGreen font-bold underline cursor-pointer font-zen-dots"
-              onClick={() => navigate("/auth/signup")}
+              onClick={() => navigate("/signup")}
             >
               Sign Up Now
             </span>
