@@ -29,7 +29,7 @@ function Overview() {
       },
     },
   ];
-  
+
   return (
     <div className="h-full w-full pt-20 pl-36 gap-5 flex flex-col">
       <div className="mx-auto w-[75%]">
