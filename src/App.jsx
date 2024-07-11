@@ -16,8 +16,8 @@ const App = () => {
     <div className="w-screen h-screen">
       <ToastContainer />
       <Routes>
-        <Route element={<FormsLayout />} path="auth">
-          <Route element={<Signin />} path="signin" />
+        <Route element={<FormsLayout />} path="">
+          <Route element={<Signin />} path="" />
           <Route element={<SignUp />} path="signup" />
           <Route element={<ForgotPassword />} path="forgot_password" />
           <Route element={<ResetPassword />} path="reset_password" />

@@ -28,7 +28,7 @@ function Overview() {
       },
     },
   ];
-  
+
   return (
     <div className="h-full w-full pt-20 pl-36 gap-5 flex flex-col">
       <div className="mx-auto w-[75%]">
@@ -53,7 +53,7 @@ function Overview() {
           inc_dec={"+12%"}
         />
       </div>
-      <div className="flex flex-col gap-2 mx-auto w-[75%] bg-[#0D0D0D] px-11 py-6 h-1/2 border-[#EDF1FA] border gray-shadow rounded-xl">
+      <div className="flex flex-col gap-2 mx-auto w-[75%] py-2 h-1/2 ">
         <div className="flex w-full justify-between items-start">
           {statsLabels.map((elem) => (
             <span className="text-[#EDF1FAB2] text-base">{elem}</span>
