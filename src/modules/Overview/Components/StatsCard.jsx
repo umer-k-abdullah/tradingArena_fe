@@ -2,7 +2,15 @@ import React from 'react'
 
 function StatsCard({timeStamp, matchStatus, battleTime, skillScore, totalProfit}) {
   return (
-    <div className='flex w-full text-white items-center p-5 justify-between h-[40%] bg-themeBlack border input-shadow rounded-md border-themeGreen'>
+    <div className='flex w-full text-white items-center p-3 justify-between h-[30%] bg-themeBlack border rounded-md border-themeGreen stats-card-win-shadow'>
+        {/* Opponent */}
+        <div>
+            <div></div>
+            <div>
+                <span>Name</span>
+                <span>@username</span>
+            </div>
+        </div>
         {/* Time Stamp */}
         <div className='flex flex-col '>
             <span>{timeStamp.date}</span>

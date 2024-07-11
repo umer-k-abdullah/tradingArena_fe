@@ -15,7 +15,7 @@ function MainLayout() {
 
   return (
     <>
-      <div className="relative w-full h-screen flex overflow-hidden ">
+      <div className="relative w-full h-screen flex overflow-hidden">
         {/* <video
           className="absolute top-0 left-0 w-full h-full object-cover object-center"
           autoPlay
