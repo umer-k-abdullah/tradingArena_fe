@@ -4,6 +4,7 @@ import StatsCard from "../Components/StatsCard";
 
 function Overview() {
   const statsLabels = [
+    "Opponent",
     "Time Stamp",
     "Match Status",
     "Battle Time",
@@ -34,7 +35,7 @@ function Overview() {
       <div className="mx-auto w-[75%]">
         <h1 className="font-zen-dots text-white text-3xl">DASHBOARD</h1>
       </div>
-      <div className="mx-auto flex w-[75%] gap-6 h-1/3">
+      <div className="mx-auto flex w-[75%] gap-6 h-1/2">
         <TopCard
           icon={"/assets/icons/win-streak.png"}
           label={"Skill Score"}
@@ -53,13 +54,22 @@ function Overview() {
           inc_dec={"+12%"}
         />
       </div>
-      <div className="flex flex-col gap-2 mx-auto w-[75%] py-2 h-1/2 ">
+      <div className="flex flex-col gap-2 mx-auto w-[75%] my-3 h-1/2">
         <div className="flex w-full justify-between items-start">
           {statsLabels.map((elem) => (
             <span className="text-[#EDF1FAB2] text-base">{elem}</span>
           ))}
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 overflow-y-auto h-full custom-scrollbar">
+          {match1Stats.map((ele) => (
+            <StatsCard
+              timeStamp={ele.timeStamp}
+              matchStatus={ele.matchStatus}
+              battleTime={ele.battleTime}
+              skillScore={ele.skillScore}
+              totalProfit={ele.totalProfit}
+            />
+          ))}
           {match1Stats.map((ele) => (
             <StatsCard
               timeStamp={ele.timeStamp}
