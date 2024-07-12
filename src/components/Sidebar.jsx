@@ -55,7 +55,7 @@ function Sidebar() {
       name: "History",
       link: "/assets/icons/log-data.png",
       icon: <FaHistory />,
-      path: "/history",
+      path: "/history-log",
     },
     {
       name: "Leaderboard",
