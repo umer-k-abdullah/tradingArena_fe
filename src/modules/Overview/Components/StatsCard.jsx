@@ -4,7 +4,7 @@ function StatsCard({timeStamp, matchStatus, battleTime, skillScore, totalProfit}
     // var [matchStatus, SetMatchStatus] = useState();
     return (
     
-    <div className={`flex w-full text-white items-center p-3 justify-between h-[28%] bg-themeBlack border rounded-md ${matchStatus=="Won"?"border-themeGreen stats-card-win-shadow":"border-red-700 stats-card-lose-shadow"} `}>
+    <div className={`flex w-full text-white items-center p-3 justify-between h-[28%] bg-themeBlack border rounded-md ${matchStatus=="Won"?"border-themeGreen stats-card-win-shadow":"border-red-700 stats-card-lose-shadow"} cursor-pointer`}>
         {/* Opponent */}
         
         <div className='flex items-center gap-2'>

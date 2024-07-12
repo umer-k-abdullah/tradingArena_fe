@@ -10,6 +10,7 @@ import FriendsPage from "./modules/Friends/Pages/FriendsPage";
 import ForgotPassword from "./modules/Auth/Pages/ForgotPassword";
 import Signin from "./modules/Auth/Pages/Signin";
 import ResetPassword from "./modules/Auth/Pages/ResetPassword";
+import HistoryLog from "./modules/HistoryLog/Pages/HistoryLog";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route element={<MainLayout />} path="">
           <Route path="dashboard" element={<Overview />} />
           <Route path="social" element={<FriendsPage />} />
+          <Route path="history-log" element={<HistoryLog/>}/>
 
         </Route>
       </Routes>
