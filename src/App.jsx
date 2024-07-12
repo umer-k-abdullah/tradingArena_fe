@@ -10,6 +10,8 @@ import FriendsPage from "./modules/Friends/Pages/FriendsPage";
 import ForgotPassword from "./modules/Auth/Pages/ForgotPassword";
 import Signin from "./modules/Auth/Pages/Signin";
 import ResetPassword from "./modules/Auth/Pages/ResetPassword";
+import FriendsListing from "./modules/Friends/Pages/FriendsListing";
+import FriendRequest from "./modules/Friends/Pages/FriendRequest";
 
 const App = () => {
   return (
@@ -23,9 +25,11 @@ const App = () => {
           <Route element={<ResetPassword />} path="reset_password" />
         </Route>
         <Route element={<MainLayout />} path="">
-          <Route path="dashboard" element={<Overview />} />
-          <Route path="social" element={<FriendsPage />} />
-
+          <Route element={<Overview />} path="dashboard" />
+          <Route element={<FriendsPage />} path="social">
+            <Route element={<FriendsListing />} path="" />
+            <Route element={<FriendRequest />} path="friend-requests" />
+          </Route>
         </Route>
       </Routes>
     </div>
