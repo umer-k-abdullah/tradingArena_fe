@@ -12,7 +12,7 @@ import {
 import { FaRankingStar } from "react-icons/fa6";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { LuPin, LuPinOff } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const [isMute, setIsMute] = useState(false);
@@ -20,6 +20,7 @@ function Sidebar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [pin, setIsPin] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   // const handleIconClick = (index) => {
   //   setActiveIndex(index);
   // };
@@ -48,10 +49,10 @@ function Sidebar() {
       name: "Battle Arena",
       link: "/assets/icons/battle.png",
       icon: <RiSwordFill />,
-      path: "/dashboard",
+      path: "/battle",
     },
     {
-      name: "History Log",
+      name: "History",
       link: "/assets/icons/log-data.png",
       icon: <FaHistory />,
       path: "/history-log",
@@ -60,7 +61,7 @@ function Sidebar() {
       name: "Leaderboard",
       link: "/assets/icons/podium.png",
       icon: <FaRankingStar />,
-      path: "/dashboard",
+      path: "/leaderboard",
     },
     {
       name: "Friends",
@@ -72,7 +73,7 @@ function Sidebar() {
       name: "Invitations",
       link: "/assets/icons/invitations.png",
       icon: <FaEnvelopeOpenText />,
-      path: "/dashboard",
+      path: "/invitation",
     },
   ];
 
@@ -98,7 +99,9 @@ function Sidebar() {
               <div key={index} className="flex justify-normal items-center">
                 <span
                   className={`${
-                    activeIndex === index ? "text-themeGreen" : "text-white"
+                    location.pathname.startsWith(ele.path)
+                      ? "text-themeGreen"
+                      : "text-white"
                   } text-xl cursor-pointer`}
                   onClick={() => handleClick(index, ele.path)}
                 >
@@ -158,7 +161,9 @@ function Sidebar() {
               <div key={index} className="h-7 flex items-center -mt-[1px] ml-4">
                 <p
                   className={`font-poppins ${
-                    activeIndex === index ? "text-themeGreen" : "text-white"
+                    location.pathname.startsWith(ele.path)
+                      ? "text-themeGreen"
+                      : "text-white"
                   }  leading-[32.02px] text-[20px] cursor-pointer`}
                   onClick={() => handleClick(index, ele.path)}
                 >

@@ -1,8 +1,9 @@
 import { FormikProvider, useFormik, Form, Field } from "formik";
 import React from "react";
 import { string, object, boolean } from "yup";
-
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const signinSchema = object({
   identifier: string().required(),
@@ -11,11 +12,16 @@ const signinSchema = object({
 });
 
 const Signin = () => {
-  
   const navigate = useNavigate();
   const handleSubmit = (values) => {
-    console.log(values);
-    navigate("/dashboard");
+    try {
+      const response = axiosInstance.post("/signin", values);
+      console.log(response.data);
+      navigate("/dashboard");
+      toast.success("user signin successfuly");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const formik = useFormik({

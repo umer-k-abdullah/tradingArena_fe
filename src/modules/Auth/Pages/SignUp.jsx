@@ -18,14 +18,14 @@ const SignUp = () => {
       const response = await axiosInstance.post("/signUp", values);
       console.log(response);
       if (response.status == 201) {
-        toast.success("user register successfuly");
-        dispatch(switchSingnin());
+        toast.success("user signup successfuly");
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.message);
     }
   };
-  
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -35,7 +35,7 @@ const SignUp = () => {
     validationSchema: signupSchema,
     onSubmit: handleSubmit,
   });
-  
+
   const formFields = [
     {
       type: "email",
@@ -59,9 +59,9 @@ const SignUp = () => {
       rightIcon: "/assets/icons/hide.png",
     },
   ];
-  
+
   const { touched, error, values } = formik;
-  
+
   return (
     <div className="">
       <h1 className="font-zen-dots text-[40px] leading-[48.76px] text-center mb-3 text-white">
