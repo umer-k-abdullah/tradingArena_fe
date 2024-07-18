@@ -31,7 +31,7 @@ const App = () => {
         <Route element={<MainLayout />} path="">
           <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
-          <Route element={<LeadersBoard />} path="leadersboard" />
+          <Route element={<LeadersBoard />} path="leaderboard" />
           <Route element={<FriendsPage />} path="social">
             <Route element={<FriendsListing />} path="" />
             <Route element={<FriendRequest />} path="friend-requests" />
