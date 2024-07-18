@@ -61,7 +61,7 @@ function Sidebar() {
       name: "Leaderboard",
       link: "/assets/icons/podium.png",
       icon: <FaRankingStar />,
-      path: "/leaderboard",
+      path: "/leadersboard",
     },
     {
       name: "Friends",
