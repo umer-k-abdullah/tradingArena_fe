@@ -13,7 +13,9 @@ import ResetPassword from "./modules/Auth/Pages/ResetPassword";
 import HistoryLog from "./modules/HistoryLog/Pages/HistoryLog";
 import FriendsListing from "./modules/Friends/Pages/FriendsListing";
 import FriendRequest from "./modules/Friends/Pages/FriendRequest";
+import BattleArena from "./modules/BattleArena/Pages/BattleArena";
 import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
+
 
 const App = () => {
   return (
@@ -24,16 +26,17 @@ const App = () => {
           <Route element={<Signin />} path="" />
           <Route element={<SignUp />} path="signup" />
           <Route element={<ForgotPassword />} path="forgot_password" />
-          <Route element={<ResetPassword />} path="reset_password" />
+          <Route element={<ResetPassword />} path="reset_password/:id/:token" />
         </Route>
         <Route element={<MainLayout />} path="">
-          <Route path="history-log" element={<HistoryLog/>}/>
+          <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
           <Route element={<LeadersBoard />} path="leadersboard" />
           <Route element={<FriendsPage />} path="social">
             <Route element={<FriendsListing />} path="" />
             <Route element={<FriendRequest />} path="friend-requests" />
           </Route>
+          <Route element={<BattleArena />} path="battle" />
         </Route>
       </Routes>
     </div>

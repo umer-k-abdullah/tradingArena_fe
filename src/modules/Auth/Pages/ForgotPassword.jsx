@@ -2,6 +2,7 @@ import { Field, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
+import axiosInstance from "../../../utils/axios";
 
 const forgotPasswordSchema = object({
   email: string().email().required(),
@@ -10,8 +11,12 @@ const forgotPasswordSchema = object({
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async(values) => {
+    // try {
+    //   console.log(values);
+    //   // const response = await axiosInstance.post("/forgetPassword", values)
+    //   // console.log(response)
+    // } catch (error) {}
   };
 
   const formik = useFormik({
