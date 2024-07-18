@@ -64,10 +64,11 @@ function Sidebar() {
     },
     {
       name: "Leaderboard",
-      icon: "/assets/icons/podium_light.png",
+icon: "/assets/icons/podium_light.png",
       activeIcon: "/assets/icons/podium_highlight.png",
       // icon: <FaRankingStar />,
       path: "/leaderboard",
+      
     },
     {
       name: "Social",
