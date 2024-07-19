@@ -67,11 +67,11 @@ function AccountSettings() {
                 onSubmit={(event) => formik.handleSubmit(event)}
                 className="gap-3 flex flex-col"
               >
-                <div className="w-full flex gap-7">
+                {/* <div className="w-full flex gap-7 h-32 items-center">
                   <img
                     src="assets/images/avatar1.png"
                     alt=""
-                    className="rounded-full h-32"
+                    className="rounded-full h-28"
                   />
                   <Field
                     type="text"
@@ -79,7 +79,21 @@ function AccountSettings() {
                     name="bio"
                     className="border border-themeGray input-shadow rounded-lg bg-themeBlack text-white w-full"
                   />
+                </div> */}
+                <div className="w-full flex gap-7 h-32 items-center">
+                  <img
+                    src="assets/images/avatar1.png"
+                    alt=""
+                    className="rounded-full h-32"
+                  />
+                  <Field
+                    as="textarea"
+                    placeholder="Bio"
+                    name="bio"
+                    className="border border-themeGray input-shadow rounded-lg bg-themeBlack text-white w-full h-full resize-none py-2 px-3 placeholder-top"
+                  />
                 </div>
+
                 <div className="w-full flex flex-col gap-3">
                   <p className="text-white text-lg">Personal Information</p>
                   <div className="grid grid-cols-2 gap-x-5 gap-y-3">
@@ -161,19 +175,30 @@ function AccountSettings() {
                 <div className="w-full flex flex-col gap-3">
                   <p className="text-white text-lg">Verification Methods</p>
                   <div className="grid grid-cols-2 gap-x-5">
-                    
                     <div className="border border-themeGray input-shadow rounded-md bg-themeBlack text-white h-12 cursor-pointer p-2 flex justify-center items-center gap-4">
-                        <img src="assets/icons/Google-icon.png" alt="Google" className="h-8"/>
-                        <span>Connect with Google</span>
+                      <img
+                        src="assets/icons/Google-icon.png"
+                        alt="Google"
+                        className="h-8"
+                      />
+                      <span>Connect with Google</span>
                     </div>
                     <div className="border border-themeGray input-shadow rounded-md bg-themeBlack text-white h-12 cursor-pointer p-2 flex justify-center items-center gap-4">
-                        <img src="assets/icons/facebook-icon.png" alt="Facebook" className="h-8"/>
-                        <span>Connect with Facebook</span>
+                      <img
+                        src="assets/icons/facebook-icon.png"
+                        alt="Facebook"
+                        className="h-8"
+                      />
+                      <span>Connect with Facebook</span>
                     </div>
-                    
                   </div>
                 </div>
-                <button type="submit" className="bg-themeGreen h-9 w-24 form-btn-shadow font-bold rounded mx-auto mt-4">Save</button>
+                <button
+                  type="submit"
+                  className="bg-themeGreen h-9 w-24 form-btn-shadow font-bold rounded mx-auto mt-4"
+                >
+                  Save
+                </button>
               </Form>
             </FormikProvider>
           </div>
