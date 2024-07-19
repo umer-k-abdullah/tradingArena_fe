@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import {
   ErrorMessage,
@@ -9,8 +9,12 @@ import {
   useFormik,
 } from "formik";
 import { object, string } from "yup";
+import { useNavigate } from "react-router-dom";
+
 
 function AccountSettings() {
+    const [closePopup, setIsClosePopup] = useState(false)
+    const navigate = useNavigate();
   const userSchema = object({
     bio: string(),
     firstName: string(),
@@ -48,10 +52,13 @@ function AccountSettings() {
   });
   const handleSubmit = async (data) => {};
 
+  const handleClosePopup = () => {
+    navigate("/dashboard");
+  }
   return (
     <div className="w-screen h-screen backdrop-blur-md flex justify-center items-center">
       <div className="w-[73%] h-[85%] bg-[#0d0d0d] border border-themeGray rounded-lg auth-screen relative flex justify-center items-center">
-        <i className="text-5xl absolute text-[#FFFFFFCC] top-2 left-2 cursor-pointer">
+        <i className="text-5xl absolute text-[#FFFFFFCC] top-2 left-2 cursor-pointer" onClick={handleClosePopup}>
           <IoClose />
         </i>
 
