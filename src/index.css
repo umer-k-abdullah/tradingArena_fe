@@ -142,3 +142,42 @@ input[type="checkbox"].appearance-none:checked {
   left: 0.75rem;
 }
 
+/* Custom Checkbox Styles */
+
+.custom-radio-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.custom-radio-label::before {
+  content: '';
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid #edf1fa; /* Gray border */
+  border-radius: 0.25em; /* Square rounded border */
+  margin-right: 0.5em;
+  background: transparent;
+}
+
+input[type="radio"]:checked + .custom-radio-label::before {
+  background: transparent;
+  position: relative;
+}
+
+input[type="radio"]:checked + .custom-radio-label::after {
+  content: '';
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  background: #01E375; /* Green dot */
+  border-radius: 50%;
+  position: absolute;
+  left: 0.25em; /* Adjust as needed to center the dot */
+  top: 0.4em; /* Adjust as needed to center the dot */
+}
