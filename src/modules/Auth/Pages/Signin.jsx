@@ -13,10 +13,11 @@ const signinSchema = object({
 
 const Signin = () => {
   const navigate = useNavigate();
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     try {
-      const response = axiosInstance.post("/signin", values);
-      console.log(response.data);
+      const response = await axiosInstance.post("/signin", values);
+      console.log(response);
+      localStorage.setItem("token", response.data.accessToken);
       navigate("/dashboard");
       toast.success("user signin successfuly");
     } catch (error) {

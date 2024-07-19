@@ -64,16 +64,15 @@ function Sidebar() {
     },
     {
       name: "Leaderboard",
-icon: "/assets/icons/podium_light.png",
-      activeIcon: "/assets/icons/podium_highlight.png",
+      icon: "/assets/icons/podium_light.png",
+      activeIcon: "/assets/icons/podium_hightlight.png",
       // icon: <FaRankingStar />,
-      path: "/leaderboard",
-      
+      path: "/leadersboard",
     },
     {
       name: "Social",
       icon: "/assets/icons/friends_light.png",
-      activeIcon: "/assets/icons/friends_hightlight.png",
+      activeIcon: "/assets/icons/friends_highlight.png",
       // icon: <FaUserFriends />,
       path: "/social",
     },
@@ -165,7 +164,10 @@ icon: "/assets/icons/podium_light.png",
           </div>
           <div className="flex flex-col gap-[33.5px] mt-5">
             {sidebarTopLinks.map((ele, index) => (
-              <div key={index} className="h-7 flex items-center  -mt-[ 1px] ml-4">
+              <div
+                key={index}
+                className="h-7 flex items-center  -mt-[ 1px] ml-4"
+              >
                 <p
                   className={`font-poppins ${
                     location.pathname.startsWith(ele.path)

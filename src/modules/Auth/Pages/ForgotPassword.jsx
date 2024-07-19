@@ -11,12 +11,13 @@ const forgotPasswordSchema = object({
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async(values) => {
-    // try {
-    //   console.log(values);
-    //   // const response = await axiosInstance.post("/forgetPassword", values)
-    //   // console.log(response)
-    // } catch (error) {}
+  const handleSubmit = async (values) => {
+    try {
+      // console.log(values);
+      const response = await axiosInstance.post("/forgetPassword", values);
+      // console.log(response)
+    } catch (error) {}
+    console.log(values);
   };
 
   const formik = useFormik({
@@ -51,7 +52,6 @@ const ForgotPassword = () => {
             <button
               type="submit"
               className="w-[100%] h-[77px] rounded-[10px] gap-3 bg-themeGreen flex justify-center items-center form-btn-shadow text-[20px] text-black leading-[30px] font-medium"
-              onClick={() => navigate("/reset_password")}
             >
               Get Email
             </button>
