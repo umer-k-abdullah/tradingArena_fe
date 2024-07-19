@@ -2,18 +2,29 @@ import { FormikProvider, useFormik, Form, Field } from "formik";
 import React from "react";
 import { object, string } from "yup";
 import { FaSearch } from "react-icons/fa"; // Example icon from react-icons
+import axiosInstance from "../../../utils/axios";
 
 const searchSchema = object({
   identifier: string().required(),
 });
 
 const FriendsSearch = () => {
+  const handleSubmit = async (values) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.post("/sendFriendRequest", values, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(response);
+    } catch (error) {}
+  };
+
   const formik = useFormik({
     initialValues: {
       identifier: "",
     },
     validationSchema: searchSchema,
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => handleSubmit(values),
   });
 
   return (

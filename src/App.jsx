@@ -16,7 +16,6 @@ import FriendRequest from "./modules/Friends/Pages/FriendRequest";
 import BattleArena from "./modules/BattleArena/Pages/BattleArena";
 import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 
-
 const App = () => {
   return (
     <div className="w-screen h-screen">
@@ -26,12 +25,15 @@ const App = () => {
           <Route element={<Signin />} path="" />
           <Route element={<SignUp />} path="signup" />
           <Route element={<ForgotPassword />} path="forgot_password" />
-          <Route element={<ResetPassword />} path="reset_password/:id/:token" />
+          <Route
+            element={<ResetPassword />}
+            path="resetPasswordForm/:id/:token"
+          />
         </Route>
         <Route element={<MainLayout />} path="">
           <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
-          <Route element={<LeadersBoard />} path="leadersboard" />
+          <Route element={<LeadersBoard />} path="/leadersboard" />
           <Route element={<FriendsPage />} path="social">
             <Route element={<FriendsListing />} path="" />
             <Route element={<FriendRequest />} path="friend-requests" />

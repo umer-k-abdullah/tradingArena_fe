@@ -1,16 +1,46 @@
 import React from "react";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
-const FriendRequestCard = () => {
+const FriendRequestCard = ({
+  firstName,
+  lastName,
+  username,
+  profileImage,
+  skillScore,
+  userId,
+  senderId,
+}) => {
+  const handleAcceptRequest = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.post(
+        `/acceptFriendRequest/${userId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      toast.success("friend request accepted");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleRejectRequest = async () => {};
+
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2  bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
       <div className="flex justify-normal items-center gap-10">
         {/* profile info */}
         <div className="flex items-center gap-4">
           {/* later on will replace with image */}
-          <div className="rounded-full bg-white h-12 w-12"></div>
+          <div className="rounded-full bg-white h-16 w-16">
+            <img src={profileImage} className="w-16 h-16 rounded-full" alt="" />
+          </div>
           <div className="flex flex-col">
-            <span>Name</span>
-            <span>@username</span>
+            <span>{firstName + " " + lastName}</span>
+            <span>{"@" + username}</span>
           </div>
         </div>
         {/* flag */}
@@ -26,7 +56,10 @@ const FriendRequestCard = () => {
           Reject
         </button>
 
-        <button className="bg-themeGreen text-themeBlack px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium w-[130px]">
+        <button
+          className="bg-themeGreen text-themeBlack px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium w-[130px]"
+          onClick={handleAcceptRequest}
+        >
           Accept{" "}
         </button>
       </div>
