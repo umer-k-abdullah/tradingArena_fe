@@ -15,6 +15,7 @@ import FriendsListing from "./modules/Friends/Pages/FriendsListing";
 import FriendRequest from "./modules/Friends/Pages/FriendRequest";
 import BattleArena from "./modules/BattleArena/Pages/BattleArena";
 import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
+import AccountSettings from "./modules/Profile/Pages/AccountSettings";
 
 const App = () => {
   return (
@@ -33,12 +34,14 @@ const App = () => {
         <Route element={<MainLayout />} path="">
           <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
+
           <Route element={<LeadersBoard />} path="/leadersboard" />
           <Route element={<FriendsPage />} path="social">
             <Route element={<FriendsListing />} path="" />
             <Route element={<FriendRequest />} path="friend-requests" />
           </Route>
           <Route element={<BattleArena />} path="battle" />
+          <Route element={<AccountSettings/>} path="profile"/>
         </Route>
       </Routes>
     </div>

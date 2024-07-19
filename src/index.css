@@ -133,3 +133,12 @@ input[type="checkbox"].appearance-none:checked {
   scrollbar-width:thin;  /* Firefox */
   scrollbar-color: #888 #000000;  /* Thumb and track color for Firefox */
 }
+
+/* Placeholder styles */
+
+.placeholder-top::placeholder {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+}
+
