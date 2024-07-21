@@ -27,7 +27,21 @@ const FriendRequestCard = ({
     }
   };
 
-  const handleRejectRequest = async () => {};
+  const handleRejectRequest = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.post(
+        `/declineFriendRequest/${senderId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      toast.success("friend request declined");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2  bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
@@ -52,7 +66,10 @@ const FriendRequestCard = ({
         </div>
       </div>
       <div className="flex justify-normal items-center gap-[10px]">
-        <button className="bg-themeBlack text-red-700 px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium border-[1px] border-red-700 w-[130px]">
+        <button
+          className="bg-themeBlack text-red-700 px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium border-[1px] border-red-700 w-[130px]"
+          onClick={handleRejectRequest}
+        >
           Reject
         </button>
 
