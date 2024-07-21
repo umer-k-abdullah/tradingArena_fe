@@ -65,14 +65,15 @@ function Sidebar() {
     {
       name: "Leaderboard",
       icon: "/assets/icons/podium_light.png",
-      activeIcon: "/assets/icons/podium_highlight.png",
+
+      activeIcon: "/assets/icons/podium_hightlight.png",
       // icon: <FaRankingStar />,
-      path: "/leaderboard",
+      path: "/leadersboard",
     },
     {
       name: "Social",
       icon: "/assets/icons/friends_light.png",
-      activeIcon: "/assets/icons/friends_hightlight.png",
+      activeIcon: "/assets/icons/friends_highlight.png",
       // icon: <FaUserFriends />,
       path: "/social",
     },

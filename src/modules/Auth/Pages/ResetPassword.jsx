@@ -1,7 +1,9 @@
 import { FormikProvider, useFormik, Form, Field } from "formik";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { object, string } from "yup";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const restPasswordSchema = object({
   passworrd: string().min(8).required(),
@@ -10,6 +12,21 @@ const restPasswordSchema = object({
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+
+  const { id, token } = useParams();
+
+  const handleSubmit = async (data) => {
+    try {
+      const response = await axiosInstance.post(
+        `/resetPassword/${id}/${token}`,
+        data
+      );
+      toast.success("Password  changes successfuly");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
