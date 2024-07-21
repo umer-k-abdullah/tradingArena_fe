@@ -65,6 +65,7 @@ function Sidebar() {
     {
       name: "Leaderboard",
       icon: "/assets/icons/podium_light.png",
+
       activeIcon: "/assets/icons/podium_hightlight.png",
       // icon: <FaRankingStar />,
       path: "/leadersboard",

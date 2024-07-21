@@ -16,6 +16,7 @@ import FriendRequest from "./modules/Friends/Pages/FriendRequest";
 import BattleArena from "./modules/BattleArena/Pages/BattleArena";
 import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 import AccountSettings from "./modules/Profile/Pages/AccountSettings";
+import Profile from "./modules/Profile/Pages/Profile";
 
 const App = () => {
   return (
@@ -41,7 +42,8 @@ const App = () => {
             <Route element={<FriendRequest />} path="friend-requests" />
           </Route>
           <Route element={<BattleArena />} path="battle" />
-          <Route element={<AccountSettings/>} path="profile"/>
+          <Route element={<Profile/>} path="profile"/>
+          <Route element={<AccountSettings/>} path="account-settings"/>
         </Route>
       </Routes>
     </div>
