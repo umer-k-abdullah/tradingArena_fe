@@ -9,11 +9,17 @@ import {
   useFormik,
 } from "formik";
 import { object, string } from "yup";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 function AccountSettings() {
   const [closePopup, setIsClosePopup] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Extract previous route from state
+  const previousRoute = location.state?.from || "dashboard";
+
   const userSchema = object({
     bio: string(),
     firstName: string(),
@@ -52,7 +58,7 @@ function AccountSettings() {
   const handleSubmit = async (data) => {};
 
   const handleClosePopup = () => {
-    navigate("/dashboard");
+    navigate(previousRoute);
   };
   return (
     <div className="w-screen h-screen backdrop-blur-md flex justify-center items-center">
