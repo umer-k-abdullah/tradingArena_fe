@@ -51,7 +51,7 @@ function Sidebar() {
     {
       name: "Profile",
       icon: "/assets/icons/profile_light.png",
-      activeIcon: "/assets/icons/profile_highlight.png",
+      activeIcon: "/assets/icons/profile_hightlight.png",
       // icon: <RiSwordFill />,
       path: "/profile",
     },

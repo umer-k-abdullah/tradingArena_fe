@@ -17,6 +17,7 @@ import BattleArena from "./modules/BattleArena/Pages/BattleArena";
 import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 import AccountSettings from "./modules/Profile/Pages/AccountSettings";
 import Profile from "./modules/Profile/Pages/Profile";
+import CreateProfile from "./modules/CreateProfile/Pages/CreateProfile";
 
 const App = () => {
   return (
@@ -32,18 +33,18 @@ const App = () => {
             path="resetPasswordForm/:id/:token"
           />
         </Route>
+        <Route element={<CreateProfile />} path="create-profile/:userId" />
         <Route element={<MainLayout />} path="">
           <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
-
           <Route element={<LeadersBoard />} path="/leadersboard" />
           <Route element={<FriendsPage />} path="social">
             <Route element={<FriendsListing />} path="" />
             <Route element={<FriendRequest />} path="friend-requests" />
           </Route>
           <Route element={<BattleArena />} path="battle" />
-          <Route element={<Profile/>} path="profile"/>
-          <Route element={<AccountSettings/>} path="account-settings"/>
+          <Route element={<Profile />} path="profile" />
+          <Route element={<AccountSettings />} path="account-settings" />
         </Route>
       </Routes>
     </div>

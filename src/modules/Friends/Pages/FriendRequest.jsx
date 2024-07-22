@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FriendRequestCard from "../Components/FriendRequestCard";
+import SendFriendRequest from "../Components/SendFriendRequest";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
 
@@ -23,23 +24,29 @@ const FriendRequest = () => {
   }, []);
 
   return (
-    <div className="text-white mt-[15px] mx-auto w-[75%] flex flex-col justify-normal items-start gap-[15px]">
-      {/* <FriendRequestCard />
-      <FriendRequestCard />
-      <FriendRequestCard />
-      <FriendRequestCard />
-      <FriendRequestCard /> */}
-      {requests.map((request, index) => (
-        <FriendRequestCard
-          key={index}
-          firstName={request.User.firstName}
-          lastName={request.User.lastName}
-          username={request.User.username}
-          userId={request.UserId}
-          senderId={request.User.id}
-          profileImage={request.User.profileImage}
-        />
-      ))}
+    <div className="text-white mt-[9px]">
+      <SendFriendRequest />
+      <div className="text-white mt-[15px] mx-auto w-[75%] flex flex-col justify-normal items-start gap-[15px]">
+        {requests && requests.length > 0 ? (
+          requests.map((request, index) => (
+            <FriendRequestCard
+              key={index}
+              firstName={request.User.firstName}
+              lastName={request.User.lastName}
+              username={request.User.username}
+              userId={request.UserId}
+              senderId={request.User.id}
+              profileImage={request.User.profileImage}
+            />
+          ))
+        ) : (
+          <div className="w-full h-[250px] flex justify-center items-center ">
+            <p className="text-[40px] font-zen-dots opacity-20">
+              You have No Friend Request
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -43,7 +43,7 @@ function Navbar() {
             <FaCaretDown />
           </i>
           {isOpen && (
-            <div className="absolute top-11 overflow-hidden right-0 w-60 bg-[#010101] text-white border border-[#EDF1FA] rounded-md shadow-lg z-10">
+            <div className="absolute top-11 overflow-hidden right-0 w-60 bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md shadow-lg z-10">
               <div className="py-2 px-2 cursor-pointer flex items-center gap-2">
                 <img
                   src="assets/images/avatar1.png"

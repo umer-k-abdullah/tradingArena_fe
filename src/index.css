@@ -134,6 +134,16 @@ input[type="checkbox"].appearance-none:checked {
   scrollbar-color: #888 #000000;  /* Thumb and track color for Firefox */
 }
 
+.hide-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* Placeholder styles */
 
 .placeholder-top::placeholder {
