@@ -1,4 +1,5 @@
 import React from "react";
+import Chart from "react-apexcharts";
 
 function Profile() {
   const MiniStatCard = ({ label, value }) => {
@@ -31,8 +32,86 @@ function Profile() {
     { label: "Global Ranking", value: "#256" },
   ];
 
+  const data = [
+    { month: "Jan", profit: 400, loss: 200 },
+    { month: "Feb", profit: 800, loss: 80 },
+    { month: "Mar", profit: 40, loss: 250 },
+    { month: "Apr", profit: 200, loss: 90 },
+    { month: "May", profit: 500, loss: 100 },
+    { month: "Jun", profit: 400, loss: 200 },
+    { month: "Jul", profit: 220, loss: 320 },
+    { month: "Aug", profit: 80, loss: 850 },
+    { month: "Sep", profit: 260, loss: 60 },
+    { month: "Oct", profit: 1000, loss: 500 },
+    { month: "Nov", profit: 60, loss: 500 },
+    { month: "Dec", profit: 400, loss: 800 },
+    // ... other months
+  ];
+
+  const series = [
+    {
+      name: "Profit",
+      data: data.map((item) => item.profit),
+      color: "#22c55e",
+    },
+    {
+      name: "Loss",
+      data: data.map((item) => item.loss),
+      color: "#ef4444",
+    },
+  ];
+
+  const categories = data.map((item) => item.month);
+
+  const options = {
+    chart: {
+      type: "line",
+      zoomEnabled: false, // Disable zooming for better control
+      toolbar: {
+        show: false,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth", // This is the key to creating a smooth line
+    },
+    xaxis: {
+      categories: categories,
+      labels: {
+        style: {
+          colors: "#EDF1FA", // Customize x-axis label color
+          fontSize: "12px",
+          fontFamily: "Poppins",
+        },
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Price",
+        style: {
+          color: "#EDF1FA", // Customize y-axis title color
+          fontSize: "14px",
+          fontWeight: "normal",
+          fontFamily: "Poppins", // Customize y-axis title font family
+        },
+      },
+      labels: {
+        style: {
+          colors: "#EDF1FA", // Customize x-axis label color
+          fontSize: "12px",
+          fontFamily: "Poppins",
+        },
+      },
+    },
+    legend: {
+      show: false, // Hide the legend
+    },
+  };
+
   return (
-    <div className="h-full w-full pt-20 pl-32 gap-7 flex flex-col overflow-y-scroll">
+    <div className="h-full w-full mt-20 pt-2 pl-32 gap-7 flex flex-col overflow-y-scroll custom-scrollbar">
       <div className="mx-auto w-[75%] flex justify-between">
         <h1 className="font-zen-dots text-white text-3xl">PROFILE</h1>
         <button className="bg-themeGreen font-poppins h-9 w-20 rounded-md font-medium form-btn-shadow">
@@ -69,18 +148,52 @@ function Profile() {
             <MiniStatCard key={index} label={ele.label} value={ele.value} />
           ))}
         </div>
-        {/* <div className="bg-purple-400 w-full h-[400px]">
-          <div>
-            <div>
-              <select name="StatType" id="StatType" className="h-8 bg-themeBlack">
-                <option value="Profit and losses">Profit and losses</option>
+        <div className="bg-[#0D0D0D] w-full h-[400px] p-6 rounded-xl border border-themeGray input-shadow mb-4">
+          <div className="flex">
+            <div className="flex-1">
+              <select
+                name="StatType"
+                id="StatType"
+                className="h-10 w-44 bg-[#0D0D0D] text-themeGray border border-themeGray rounded-md text-center cursor-pointer custom-select"
+              >
+                <option value="Profit and losses" className="">
+                  Profit and losses
+                </option>
+                <option value="Profit and losses" className="">
+                  Option 2
+                </option>
               </select>
             </div>
-            <div>
-
+            <div className="flex flex-1 justify-between">
+              <div className="flex items-center gap-4">
+                <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+                <span className="text-[#EDF1FAB2]">Profits</span>
+                <div className="h-2 w-2 bg-red-500 rounded-full"></div>
+                <span className="text-[#EDF1FAB2]">Losses</span>
+              </div>
+              <div>
+                <select
+                  name="StatType"
+                  id="StatType"
+                  className="h-10 w-24 bg-[#0D0D0D] text-[#EDF1FAB2] border border-themeGray rounded-md text-center cursor-pointer custom-select"
+                >
+                  <option value="Monthly" className="">
+                    Monthly
+                  </option>
+                  <option value="Profit and losses" className="">
+                    Weekly
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
-        </div> */}
+          <div>
+            <Chart options={options} series={series} type="line" height={300} />
+          </div>
+        </div>
+        <div className="w-full h-[70px]">
+          <p>.</p>
+        </div>
       </div>
     </div>
   );
