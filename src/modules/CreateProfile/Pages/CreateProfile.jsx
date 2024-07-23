@@ -1,7 +1,9 @@
 import { Field, Form, FormikProvider, useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { number, string, object } from "yup";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 const userProfileSchema = object({
   image: string(),
   firstName: string().required(),
@@ -9,12 +11,32 @@ const userProfileSchema = object({
   phone: string().required(),
   username: string().required(),
   gender: string().required(),
-  age: number().required(),
+  age: string().required(),
   country: string().required(),
   description: string().required(),
   language: string().required(),
 });
 const CreateProfile = () => {
+  const [flags, setFlags] = useState([]);
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const response = await axios.get(
+        "https://restfulcountries.com/api/v1/countries",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI                                ",
+          },
+        }
+      );
+      console.log(response);
+      console.log(response?.data?.href);
+      // setFlags(response.data.href.flag);
+    };
+    fetchCountries(); 
+  }, []);
+  
   const [img, setImg] = useState(null);
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -53,7 +75,7 @@ const CreateProfile = () => {
         </h1>
         <div className="w-full h-full p-5 pl-24 mt-4">
           <FormikProvider value={formik} className="">
-            <Form>
+            <Form className="">
               <div className="flex justify-start items-center gap-2">
                 <div className="col-span-3 relative w-44 h-44 rounded-[12px] bg-light_blue_400 overflow-hidden">
                   <input
@@ -88,14 +110,86 @@ const CreateProfile = () => {
                   as="textarea"
                   rows={6}
                   placeholder="Bio"
-                  className="w-[90%] h-full p-2 border-[1px] border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-light_blue_400 focus:border-transparent bg-transparent outline-none input-shadow text-[16px] leading-[24px] text-[#FFFFFF80]"
+                  className="w-[81%] h-full p-2 border-[1px] border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-light_blue_400 focus:border-transparent bg-transparent outline-none input-shadow text-[16px] leading-[24px] text-[#FFFFFF80]"
                 />
               </div>
-              <div className="flex justify-start items-center gap-2">
-                <div className="flex flex-col justify-start items-start gap-2">
-                  <div></div>
+              <h6 className="font-medium text-[20px] leading-[30px] text-[#EDF1FA] mt-5">
+                Personal Information
+              </h6>
+              <div className="flex justify-start items-start mt-5 w-[100%]">
+                <div className="flex flex-col justify-start items-start gap-5 w-[50%]">
+                  <div className="flex px-3 justify-normal items-center w-[90%] input-shadow rounded-lg border-[1px]">
+                    <img src="/assets/icons/id_card.png" className="" alt="" />
+                    <Field
+                      name="firstName"
+                      placeholder="First Name"
+                      className="w-full bg-transparent py-4 px-4 outline-none"
+                    />
+                  </div>
+                  <div className="flex px-3 justify-normal items-center w-[90%] input-shadow rounded-lg border-[1px]">
+                    <img
+                      src="/assets/icons/profile_gray.png"
+                      className=""
+                      alt=""
+                    />
+                    <Field
+                      name="username"
+                      placeholder="username"
+                      className="w-full bg-transparent py-4 px-4 outline-none"
+                    />
+                  </div>
                 </div>
-                <div></div>
+                <div className="flex flex-col justify-start items-start gap-5 w-[50%]">
+                  <div className="flex px-3 justify-normal items-center w-[90%] input-shadow rounded-lg border-[1px]">
+                    <img src="/assets/icons/id_card.png" className="" alt="" />
+                    <Field
+                      name="lastName"
+                      placeholder="Last Name"
+                      className="w-full bg-transparent py-4 px-4 outline-none"
+                    />
+                  </div>
+                  <div className="flex px-3 justify-normal items-center w-[90%] input-shadow rounded-lg border-[1px]">
+                    <img src="/assets/icons/calender.png" className="" alt="" />
+                    <DatePicker
+                      selected={
+                        formik.values.age ? new Date(formik.values.age) : null
+                      }
+                      onChange={(date) => formik.setFieldValue("age", date)}
+                      className="w-full bg-transparent py-4 px-4 outline-none"
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="dd/MM/yyyy"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-normal items-center mt-9 w-[100%] gap-10">
+                <div className="flex justify-normal items-center gap-2 px-2 py-4 input-shadow border-[1px] rounded-md w-[15%] custom-radio">
+                  <Field
+                    type="radio"
+                    name="gender"
+                    className="form-radio"
+                    value="male"
+                  />
+                  <label htmlFor="">Male</label>
+                </div>
+                <div className="flex justify-normal items-center gap-2 px-2 py-4 input-shadow border-[1px] rounded-md w-[15%] custom-radio">
+                  <Field
+                    type="radio"
+                    name="gender"
+                    className="form-radio"
+                    value="female"
+                  />
+                  <label htmlFor="">Female</label>
+                </div>
+                <div className="flex justify-normal items-center gap-2 px-2 py-4 input-shadow border-[1px] rounded-md w-[15%] custom-radio">
+                  <Field
+                    type="radio"
+                    name="gender"
+                    className="form-radio"
+                    value="other"
+                  />
+                  <label htmlFor="">Other</label>
+                </div>
               </div>
             </Form>
           </FormikProvider>
