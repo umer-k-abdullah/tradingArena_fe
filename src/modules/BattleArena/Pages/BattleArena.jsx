@@ -7,14 +7,17 @@ const BattleArena = () => {
     {
       name: "Quick Match",
       icons: "/assets/icons/fast-delivery.png",
+      path: "/matchmaking",
     },
     {
       name: "Invite Friends",
       icons: "/assets/icons/high-five.png",
+      path: "/social",
     },
     {
       name: "Invite Manually",
       icons: "/assets/icons/invitation.png",
+      path: "/social",
     },
   ];
   const invites = [];
@@ -25,9 +28,12 @@ const BattleArena = () => {
       </div>
       <div className="mx-auto font-poppins w-[75%] flex justify-between items-center gap-6 h-1/3">
         {topCards.map((ele, index) => (
-          
-            <TopCard key={index} name={ele.name} icon={ele.icons} />
-          
+          <TopCard
+            key={index}
+            name={ele.name}
+            icon={ele.icons}
+            path={ele.path}
+          />
         ))}
       </div>
       <div className="flex flex-col gap-2 mx-auto w-[75%] my-3  font-poppins">
