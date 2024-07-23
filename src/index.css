@@ -17,14 +17,14 @@ body {
 
 /* Change the background color and text color of selected text */
 ::selection {
-  background: #01E375;  /* Custom background color for selected text */
-  color: #010101;  /* Custom text color for selected text */
+  background: #01e375; /* Custom background color for selected text */
+  color: #010101; /* Custom text color for selected text */
 }
 
 /* For Firefox */
 ::-moz-selection {
-  background: #01E375;  /* Custom background color for selected text */
-  color: #010101;  /* Custom text color for selected text */
+  background: #01e375; /* Custom background color for selected text */
+  color: #010101; /* Custom text color for selected text */
 }
 
 .game-btn-shadow {
@@ -74,25 +74,25 @@ input[type="checkbox"].appearance-none:checked {
   background-size: 80% 80%;
 }
 
-.gray-shadow{
+.gray-shadow {
   box-shadow: 0 0 10px rgba(138, 138, 138, 0.8);
 }
 
-.card-shadow{
+.card-shadow {
   box-shadow: 0 0 10px rgba(138, 138, 138, 0.8);
 }
-.stats-card-win-shadow{
+.stats-card-win-shadow {
   box-shadow: 0 0 5px rgba(1, 227, 117, 0.8);
   transition: box-shadow 0.2s;
 }
-.stats-card-win-shadow:hover{
+.stats-card-win-shadow:hover {
   box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
 }
-.stats-card-lose-shadow{
+.stats-card-lose-shadow {
   box-shadow: 0 0 5px rgba(255, 1, 1, 0.8);
   transition: box-shadow 0.2s;
 }
-.stats-card-lose-shadow:hover{
+.stats-card-lose-shadow:hover {
   box-shadow: 0 0 15px rgba(255, 1, 1, 0.8);
 }
 
@@ -103,10 +103,9 @@ input[type="checkbox"].appearance-none:checked {
 
 /* Hide scrollbar for IE, Edge, and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-
 
 /* ---------------------------------------------------- */
 
@@ -116,32 +115,32 @@ input[type="checkbox"].appearance-none:checked {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #000000;  /* Track color */
+  background: #000000; /* Track color */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #000000;  /* Thumb color */
-  border-radius: 8px;  /* Rounded corners */
-  height: 20px;  /* Minimum height for the thumb */
+  background: #000000; /* Thumb color */
+  border-radius: 8px; /* Rounded corners */
+  height: 20px; /* Minimum height for the thumb */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;  /* Thumb hover color */
+  background: #555; /* Thumb hover color */
 }
 
 .custom-scrollbar {
-  scrollbar-width:thin;  /* Firefox */
-  scrollbar-color: #888 #000000;  /* Thumb and track color for Firefox */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #000000; /* Thumb and track color for Firefox */
 }
 
-.hide-scrollbar::-webkit-scrollbar{
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Placeholder styles */
@@ -165,7 +164,7 @@ input[type="checkbox"].appearance-none:checked {
 }
 
 .custom-radio-label::before {
-  content: '';
+  content: "";
   display: block;
   width: 1em;
   height: 1em;
@@ -181,17 +180,16 @@ input[type="radio"]:checked + .custom-radio-label::before {
 }
 
 input[type="radio"]:checked + .custom-radio-label::after {
-  content: '';
+  content: "";
   display: block;
   width: 0.5em;
   height: 0.5em;
-  background: #01E375; /* Green dot */
+  background: #01e375; /* Green dot */
   border-radius: 50%;
   position: absolute;
   left: 0.25em; /* Adjust as needed to center the dot */
   top: 0.4em; /* Adjust as needed to center the dot */
 }
-
 /* Custom styles for select and option elements */
 
 .custom-select option {
@@ -210,4 +208,29 @@ input[type="radio"]:checked + .custom-radio-label::after {
 .custom-select option[selected] {
   background-color: #3C3C3C; /* Lighter gray for selected/hovered option */
   color: white; /* White text */
+}
+.custom-radio input[type="radio"] {
+  appearance: none; /* Remove default styling */
+  background-color: transparent;
+  border: 2px solid #ccc;
+  width: 1.25rem;
+  height: 1.25rem;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-radio input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: #01e375; /* Change to your color */
+}
+
+.custom-radio input[type="radio"]:focus {
+  border-color: #edf1fa; /* Change to your color */
 }

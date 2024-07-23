@@ -18,6 +18,7 @@ import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 import AccountSettings from "./modules/Profile/Pages/AccountSettings";
 import Profile from "./modules/Profile/Pages/Profile";
 import CreateProfile from "./modules/CreateProfile/Pages/CreateProfile";
+import Matchmaking from "./modules/Matchmaking/Pages/Matchmaking";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         </Route>
         <Route element={<CreateProfile />} path="create-profile/:userId" />
         <Route element={<MainLayout />} path="">
+          <Route element={<Matchmaking />} path="matchmaking" />
           <Route path="history-log" element={<HistoryLog />} />
           <Route element={<Overview />} path="dashboard" />
           <Route element={<LeadersBoard />} path="/leadersboard" />
