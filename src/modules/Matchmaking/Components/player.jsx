@@ -11,13 +11,13 @@ const Player = () => {
     },
     {
       icon: "/assets/icons/win-rate.png",
-      label: "Skill Score",
+      label: "Battle Win Rate",
       value: 6545,
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/stats.png",
-      label: "Skill Score",
+      label: "Total Profit",
       value: 6545,
       inc_dec: "+23%",
     },

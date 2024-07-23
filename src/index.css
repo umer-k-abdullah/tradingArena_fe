@@ -234,3 +234,13 @@ input[type="radio"]:checked + .custom-radio-label::after {
 .custom-radio input[type="radio"]:focus {
   border-color: #edf1fa; /* Change to your color */
 }
+
+.custom-select option {
+  background-color: black; /* Background color */
+  color: white;            /* Text color */
+  padding: 10px;           /* Padding */
+}
+
+.custom-select option:checked {
+  background-color: lightgray; /* Checked option background color */
+}

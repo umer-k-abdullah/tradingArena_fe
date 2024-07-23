@@ -18,6 +18,7 @@ const Signin = () => {
       const response = await axiosInstance.post("/signin", values);
       console.log(response);
       localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("userData", JSON.stringify(response.data.user));
       navigate("/dashboard");
       toast.success("user signin successfuly");
     } catch (error) {
