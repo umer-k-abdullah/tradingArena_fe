@@ -45,7 +45,7 @@ function AccountSettings() {
       female: "",
       other: "",
       country: "",
-      language: "",
+      // language: "",
       email: "",
       phone: "",
       profileImage: "",
