@@ -69,7 +69,18 @@ function Profile() {
             <MiniStatCard key={index} label={ele.label} value={ele.value} />
           ))}
         </div>
-        <div className="bg-purple-400 w-full h-[600px]"></div>
+        {/* <div className="bg-purple-400 w-full h-[400px]">
+          <div>
+            <div>
+              <select name="StatType" id="StatType" className="h-8 bg-themeBlack">
+                <option value="Profit and losses">Profit and losses</option>
+              </select>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div> */}
       </div>
     </div>
   );
