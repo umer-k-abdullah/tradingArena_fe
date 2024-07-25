@@ -29,12 +29,14 @@ function AccountSettings() {
   const previousRoute = location.state?.from || "dashboard";
   const [userProfile, setUserProfile] = useState(null);
   const [countries, setCountries] = useState([]);
-
+  
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get("/getProfile", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       setUserProfile(response.data);
     } catch (error) {
@@ -90,7 +92,10 @@ function AccountSettings() {
 
       const token = localStorage.getItem("token");
       const response = await axiosInstance.put("/updateProfile", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (response.status === 200) {
         toast.success("User profile updated");
@@ -134,7 +139,7 @@ function AccountSettings() {
   } = formik;
 
   return (
-    <div className="w-screen h-screen backdrop-blur-md flex justify-center items-center text-white">
+    <div className="py-5 w-screen backdrop-blur-md flex justify-center items-center text-white">
       <div className="w-[73%] py-4 bg-[#0d0d0d] border border-themeGray rounded-lg auth-screen relative flex justify-center items-center">
         <i
           className="text-5xl absolute text-[#FFFFFFCC] top-2 left-2 cursor-pointer"
