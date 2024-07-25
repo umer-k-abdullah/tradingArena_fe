@@ -1,24 +1,24 @@
 import React from "react";
 import Card from "./Card";
 
-const Player = () => {
+const Player = ({ username, profileImage, battlesWon, playerXp }) => {
   const cardsArray = [
     {
       icon: "/assets/icons/win-streak.png",
       label: "Skill Score",
-      value: 6545,
+      value: 500,
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/win-rate.png",
       label: "Battle Win Rate",
-      value: 6545,
+      value: 0,
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/stats.png",
       label: "Total Profit",
-      value: 6545,
+      value: 0,
       inc_dec: "+23%",
     },
   ];
@@ -31,7 +31,7 @@ const Player = () => {
           alt=""
         />
       </div>
-      <p className="font-medium text-[30px] leading-[45px] ">@username</p>
+      <p className="font-medium text-[30px] leading-[45px] ">{username}</p>
       <div className="flex justify-between items-center gap-2">
         {cardsArray.map((ele, index) => (
           <Card
