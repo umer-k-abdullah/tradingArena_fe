@@ -29,12 +29,14 @@ function AccountSettings() {
   const previousRoute = location.state?.from || "dashboard";
   const [userProfile, setUserProfile] = useState(null);
   const [countries, setCountries] = useState([]);
-
+  
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get("/getProfile", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       setUserProfile(response.data);
     } catch (error) {
@@ -90,7 +92,10 @@ function AccountSettings() {
 
       const token = localStorage.getItem("token");
       const response = await axiosInstance.put("/updateProfile", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (response.status === 200) {
         toast.success("User profile updated");
