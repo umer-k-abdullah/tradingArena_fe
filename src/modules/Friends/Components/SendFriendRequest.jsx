@@ -27,7 +27,7 @@ const SendFriendRequest = () => {
   });
 
   return (
-    <div className="w-full h-full font-poppins">
+    <div className="w-full  font-poppins">
       <FormikProvider value={formik}>
         <Form className="w-full h-full mx-auto">
           <div className="flex justify-center items-center gap-[10px] p-2 mx-auto">

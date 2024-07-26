@@ -15,6 +15,7 @@ const FriendsListing = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(response.data)
         setFriends(response.data);
       } catch (error) {
         console.error(error);
