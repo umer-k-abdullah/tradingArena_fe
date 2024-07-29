@@ -23,6 +23,7 @@ function Navbar() {
         },
       });
       setUserProfile(response.data);
+      console.log(response.data);
       const createdAt = response?.data?.createdAt;
       const date = new Date(createdAt);
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -58,16 +59,16 @@ function Navbar() {
           <div className="rounded-full w-11 h-full flex justify-center items-center border border-[#EDF1FA] bg-[#161616]">
             <img
               src={` ${
-                userProfile
+                userProfile && userProfile.profileImage != null
                   ? userProfile.profileImage
                   : "assets/images/avatar1.png"
               }`}
               alt="User Avatar"
-              className="h-[42px] rounded-full"
+              className="h-10 rounded-full"
             />
           </div>
           <span>
-            {userProfile
+            {userProfile && userProfile.firstName && userProfile.lastName
               ? `${userProfile.firstName} ${userProfile.lastName[0]}.`
               : "Loading..."}
           </span>
@@ -79,7 +80,7 @@ function Navbar() {
               <div className="py-2 px-2 cursor-pointer flex items-center gap-2">
                 <img
                   src={` ${
-                    userProfile
+                    userProfile && userProfile.profileImage != null
                       ? userProfile.profileImage
                       : "assets/images/avatar1.png"
                   }`}
@@ -118,7 +119,10 @@ function Navbar() {
                 <span>Notification Settings</span>
               </div>
               <hr className="w-[98%] border border-[#edf1faB3] mx-auto" />
-              <div className="py-3 px-4 hover:bg-[#161616] cursor-pointer text-red-500 flex items-center gap-2">
+              <div
+                className="py-3 px-4 hover:bg-[#161616] cursor-pointer text-red-500 flex items-center gap-2"
+                onClick={() => navigate("/")}
+              >
                 <img
                   src="assets/icons/sign-out.png"
                   alt="Sign Out"

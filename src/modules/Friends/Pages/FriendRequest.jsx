@@ -4,6 +4,7 @@ import SendFriendRequest from "../Components/SendFriendRequest";
 import { FaAngleDown } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
+import OwnFriendRequestsCard from "../Components/OwnFriendRequestsCard";
 
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
@@ -11,30 +12,39 @@ const FriendRequest = () => {
   const [toggleSendFriendRequest, setToggleSendFriendRequest] = useState(false);
   const [recievedFriendRequests, setRecievedFrinedReuests] = useState(false);
 
-  useEffect(() => {
-    const fetchFriendRequests = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axiosInstance.get("/friendRequestsList", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setRequests(response.data);
-      } catch (error) {
-        toast.error(error.message);
-      }
-    };
+  const fetchFriendRequests = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.get("/friendRequestsList", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(response.data);
+      setRequests(response.data);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
+  const fetchOwnRequests = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.get("/ownrequestsList", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      console.log(response?.data);
+      setOwnRequests(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     fetchFriendRequests();
   }, []);
 
   useEffect(() => {
-    const fetchOwnRequests = async () => {
-      try {
-        
-      } catch (error) {
-        
-      }
-    };
+    fetchOwnRequests();
   }, []);
 
   const removeRequest = (userId) => {
@@ -43,14 +53,24 @@ const FriendRequest = () => {
     );
   };
 
+  const removeOwnRequest = (id) => {
+    setOwnRequests((prevRequests) =>
+      prevRequests.filter((request) => request.id !== id)
+    );
+  };
+
+  const refreshRequests = async () => {
+    await fetchOwnRequests();
+  };
+
   return (
     <div className="text-white mt-[9px]">
-      <SendFriendRequest />
+      <SendFriendRequest refreshRequests={refreshRequests} />
       <div className="text-white mt-[15px] mx-auto w-[75%] flex flex-col justify-normal items-start gap-[5px]">
         <div className="w-full">
           <div className="bg-[#0d0d0d] p-4 flex justify-between items-center mt-5">
             <h6 className="font-medium text-[20px] leading-[30px] text-[#EDF1FA]">
-              Friend requests sent(0)
+              Friend requests sent({ownRequests.length})
             </h6>
             <FaAngleDown
               className={`cursor-pointer transition-transform duration-300 ${
@@ -66,19 +86,22 @@ const FriendRequest = () => {
               toggleSendFriendRequest ? "max-h-[210px] opacity-100" : "max-h-0"
             }`}
           >
-            {[1, 2, 3, 4].map((_, index) => (
-              <FriendRequestCard
-                key={index}
-                firstName={"Umer"}
-                lastName={"Abdullah"}
-                username={"BeastFerret"}
-                userId={1}
-                senderId={2}
-                profileImage={"/assets/images/avatar1.png"}
-              />
-            ))}
+            {ownRequests &&
+              ownRequests.length > 0 &&
+              ownRequests.map((requests, index) => (
+                <OwnFriendRequestsCard
+                  key={index}
+                  firstName={requests.firstName}
+                  lastName={requests.lastName}
+                  username={requests.username}
+                  country={requests.country}
+                  profileImage={requests.profileImage}
+                  id={requests.id}
+                  removeOwnRequest={removeOwnRequest}
+                />
+              ))}
           </div>
-        </div>{" "}
+        </div>
         <div className="w-full">
           <div className="bg-[#0d0d0d] p-4 flex justify-between items-center mt-5">
             <h6 className="font-medium text-[20px] leading-[30px] text-[#EDF1FA]">
@@ -102,6 +125,7 @@ const FriendRequest = () => {
                 <FriendRequestCard
                   key={index}
                   firstName={request.User.firstName}
+                  country={request.User.country}
                   lastName={request.User.lastName}
                   username={request.User.username}
                   userId={request.UserId}

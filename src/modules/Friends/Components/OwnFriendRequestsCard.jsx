@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const FriendRequestCard = ({
+const OwnFriendRequestsCard = ({
   firstName,
   lastName,
   username,
-  country,
   profileImage,
-  skillScore,
-  userId,
-  senderId,
-  removeRequest,
+  id,
+  removeOwnRequest,
+  country,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
 
@@ -43,35 +42,14 @@ const FriendRequestCard = ({
     fetchCountries(country);
   }, []);
 
-  const handleAcceptRequest = async () => {
+  const cancelRequest = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axiosInstance.post(
-        `/acceptFriendRequest/${userId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      toast.success("Friend request accepted");
-      removeRequest(userId); // Remove the request from the list
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-
-  const handleRejectRequest = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      await axiosInstance.post(
-        `/declineFriendRequest/${senderId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      toast.success("Friend request declined");
-      removeRequest(userId); // Remove the request from the list
+      const response = await axiosInstance.delete(`/cancelRequest/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      removeOwnRequest(id);
+      toast.success("Friend Request deleted successfuly");
     } catch (error) {
       toast.error(error.message);
     }
@@ -89,31 +67,22 @@ const FriendRequestCard = ({
             <span>{"@" + username}</span>
           </div>
         </div>
-        {/* <img src="/assets/icons/flag.png" alt="" /> */}
         {countryFlag && (
           <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
         )}
         <div className="flex justify-center items-center gap-1">
           <img src="/assets/icons/win-streak.png" className="h-[20px]" alt="" />
-          <p className="text-[#EDF1FA] text-[13px]">7830</p>
+          <p className="text-[#EDF1FA] text-[13px]">0000</p>
         </div>
       </div>
       <div className="flex justify-normal items-center gap-[10px]">
-        <button
-          className="bg-themeBlack text-red-700 px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px] font-poppins font-medium border-[1px] border-red-700 w-[130px]"
-          onClick={handleRejectRequest}
-        >
-          Reject
-        </button>
-        <button
-          className="bg-themeGreen text-themeBlack px-3 p-2 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px] font-poppins font-medium w-[130px]"
-          onClick={handleAcceptRequest}
-        >
-          Accept
-        </button>
+        <FaRegTrashAlt
+          className=" text-red-700 text-3xl mr-5 cursor-pointer"
+          onClick={cancelRequest}
+        />
       </div>
     </div>
   );
 };
 
-export default FriendRequestCard;
+export default OwnFriendRequestsCard;
