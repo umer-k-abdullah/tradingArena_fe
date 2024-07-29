@@ -29,12 +29,14 @@ function AccountSettings() {
   const previousRoute = location.state?.from || "dashboard";
   const [userProfile, setUserProfile] = useState(null);
   const [countries, setCountries] = useState([]);
-
+  
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get("/getProfile", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       setUserProfile(response.data);
     } catch (error) {
@@ -90,7 +92,10 @@ function AccountSettings() {
 
       const token = localStorage.getItem("token");
       const response = await axiosInstance.put("/updateProfile", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (response.status === 200) {
         toast.success("User profile updated");
@@ -135,7 +140,7 @@ function AccountSettings() {
 
   return (
     <div className="w-screen h-screen backdrop-blur-md flex justify-center items-center text-white">
-      <div className="w-[73%] py-4 bg-[#0d0d0d] border border-themeGray rounded-lg auth-screen relative flex justify-center items-center">
+      <div className="w-[73%] h-[85%] py-4 bg-[#0d0d0d] border border-themeGray rounded-lg auth-screen relative flex justify-center items-center">
         <i
           className="text-5xl absolute text-[#FFFFFFCC] top-2 left-2 cursor-pointer"
           onClick={handleClosePopup}
@@ -143,13 +148,13 @@ function AccountSettings() {
           <IoClose />
         </i>
 
-        <div className="flex flex-col w-[80%] items-center p-5">
+        <div className="flex flex-col w-[80%] h-full items-center p-5">
           <div>
             <h2 className="text-white font-zen-dots text-3xl mb-5">
               ACCOUNT SETTINGS
             </h2>
           </div>
-          <div className="w-full h-[650px] overflow-y-auto custom-scrollbar pr-4">
+          <div className="w-full h-full overflow-y-auto custom-scrollbar p-4">
             <FormikProvider value={formik}>
               <Form onSubmit={formik.handleSubmit}>
                 {/* Form content */}
@@ -328,7 +333,7 @@ function AccountSettings() {
                 <div className="w-full flex justify-center items-center mt-10">
                   <button
                     type="submit"
-                    className="bg-themeGreen h-9 w-24 form-btn-shadow font-bold rounded mx-auto mt-4"
+                    className="bg-themeGreen text-black h-9 w-24 form-btn-shadow font-bold rounded mx-auto mt-4"
                   >
                     Save
                   </button>

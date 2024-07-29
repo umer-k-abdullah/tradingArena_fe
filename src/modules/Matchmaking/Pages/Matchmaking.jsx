@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Player from "../Components/player";
 import axiosInstance from "../../../utils/axios";
 import Spinner from "../../../components/Spinner";
+
 import io from "socket.io-client";
 
 const socketUrl = "http://localhost:3304"; 
@@ -116,7 +117,7 @@ const Matchmaking = () => {
           src="/assets/icons/vs.png"
           className="w-[170px] h-[157px] -mt-20"
           alt=""
-        />
+        />            
         {opponentData ? (
           <Player
             username={opponentData.username}
@@ -127,6 +128,7 @@ const Matchmaking = () => {
         ) : (
           <Spinner />
         )}
+
       </div>
     </div>
   );
