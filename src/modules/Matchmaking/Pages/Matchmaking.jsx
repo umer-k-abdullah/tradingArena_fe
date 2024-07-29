@@ -4,12 +4,12 @@ import axiosInstance from "../../../utils/axios";
 import Spinner from "../../../components/Spinner";
 import io from "socket.io-client";
 
-const socketUrl = "http://localhost:3304"; // Server URL
+const socketUrl = "http://localhost:3304"; 
 
 const Matchmaking = () => {
   const [userData, setUserData] = useState(null);
   const [opponentData, setOpponentData] = useState(null);
-  const [isSearching, setIsSearching] = useState(true); // State to manage searching status
+  const [isSearching, setIsSearching] = useState(true); 
 
   // Fetch user data
   const fetchUserData = async () => {
@@ -27,7 +27,7 @@ const Matchmaking = () => {
   };
 
   useEffect(() => {
-    // Create a new socket instance every time the component mounts
+    // A new socket instance
     const socket = io(socketUrl, {
       transports: ["websocket"],
       withCredentials: true,
@@ -86,12 +86,12 @@ const Matchmaking = () => {
     // Cleanup on component unmount
     return () => {
       if (socket) {
-        // Detach event listeners to avoid duplicate handlers
+      
         socket.off("connect");
         socket.off("matchFound");
         socket.off("noMatchFound");
         socket.off("error");
-        socket.disconnect(); // Disconnect socket on component unmount
+        socket.disconnect(); 
       }
     };
   }, []);
@@ -99,7 +99,7 @@ const Matchmaking = () => {
   return (
     <div className="h-full w-full text-white pl-36 gap-[20px] flex flex-col font-poppins">
       <p className="font-poppins font-semibold text-[30px] leading-[45px] pt-20 pl-36">
-        Looking for your opponent...
+        {/* Looking for your opponent... */}
       </p>
       <div className="mx-auto w-[80%] mt-36 flex justify-center items-center gap-16">
         {userData ? (

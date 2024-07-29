@@ -12,13 +12,13 @@ const Player = ({ username, profileImage, battlesWon, playerXp }) => {
     {
       icon: "/assets/icons/win-rate.png",
       label: "Battle Win Rate",
-      value: 0,
+      value: "-",
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/stats.png",
       label: "Total Profit",
-      value: 0,
+      value: "-",
       inc_dec: "+23%",
     },
   ];
