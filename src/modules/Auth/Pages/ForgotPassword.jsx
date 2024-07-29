@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const forgotPasswordSchema = object({
   email: string().email().required(),
@@ -16,7 +17,10 @@ const ForgotPassword = () => {
       // console.log(values);
       const response = await axiosInstance.post("/forgetPassword", values);
       // console.log(response)
-    } catch (error) {}
+      toast.success("Reset password email sent");
+    } catch (error) {
+      toast.error(error.message);
+    }
     console.log(values);
   };
 

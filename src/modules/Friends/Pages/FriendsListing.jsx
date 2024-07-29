@@ -15,7 +15,7 @@ const FriendsListing = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data)
+        console.log(response.data);
         setFriends(response.data);
       } catch (error) {
         console.error(error);
@@ -44,6 +44,7 @@ const FriendsListing = () => {
               lastName={ele.lastName}
               profileImage={ele.profileImage}
               username={ele.username}
+              country={ele.country}
             />
           ))
         ) : (
