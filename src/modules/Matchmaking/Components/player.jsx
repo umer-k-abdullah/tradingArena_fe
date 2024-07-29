@@ -2,41 +2,26 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import axiosInstance from "../../../utils/axios";
 
-const Player = () => {
-  const [userData, setUserData] = useState({});
-  const fetchUserData = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/getUserData", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUserData(response.data.userDetails);
-      console.log(response.data.userDetails.username);
-      // console.log()
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+const Player = ({ username, profileImage, battlesWon, playerXp }) => {
 
   const cardsArray = [
     {
       icon: "/assets/icons/win-streak.png",
       label: "Skill Score",
-      value: 0,
+      value: 500,
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/win-rate.png",
       label: "Battle Win Rate",
-      value: 0,
+      value: "-",
+
       inc_dec: "+23%",
     },
     {
       icon: "/assets/icons/stats.png",
       label: "Total Profit",
-      value: 0,
+      value: "-",
       inc_dec: "+23%",
     },
   ];
@@ -49,9 +34,7 @@ const Player = () => {
           alt=""
         />
       </div>
-      <p className="font-medium text-[30px] leading-[45px] ">
-        @{userData ? <span>-----</span> : <span>{userData.username}</span>}
-      </p>
+      <p className="font-medium text-[30px] leading-[45px] ">{username}</p>
       <div className="flex justify-between items-center gap-2">
         {cardsArray.map((ele, index) => (
           <Card
