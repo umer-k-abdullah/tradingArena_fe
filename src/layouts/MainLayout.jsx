@@ -28,7 +28,7 @@ function MainLayout() {
           />
         </video> */}
         <div className=""></div> {/* styles for previous main layout page: absolute inset-0 bg-gradient-to-t from-[#01E37580] via-[#010101b7] to-[#010101] opacity-100 */}
-        <div className="bg-themeBlack relative z-10 flex flex-col items-center justify-center w-full h-full overflow-hidden">
+        <div className="bg-themeBlack relative z-10 flex flex-col justify-center items-center w-full h-full overflow-hidden">
           <div className="w-full max-w-screen-lg mx-auto">
             <Navbar />
           </div>

@@ -2,6 +2,8 @@ import { Field, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const forgotPasswordSchema = object({
   email: string().email().required(),
@@ -10,7 +12,15 @@ const forgotPasswordSchema = object({
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
+    try {
+      // console.log(values);
+      const response = await axiosInstance.post("/forgetPassword", values);
+      // console.log(response)
+      toast.success("Reset password email sent");
+    } catch (error) {
+      toast.error(error.message);
+    }
     console.log(values);
   };
 
@@ -46,7 +56,6 @@ const ForgotPassword = () => {
             <button
               type="submit"
               className="w-[100%] h-[77px] rounded-[10px] gap-3 bg-themeGreen flex justify-center items-center form-btn-shadow text-[20px] text-black leading-[30px] font-medium"
-              onClick={() => navigate("/reset_password")}
             >
               Get Email
             </button>

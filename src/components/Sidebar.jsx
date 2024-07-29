@@ -21,12 +21,7 @@ function Sidebar() {
   const [pin, setIsPin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  // const handleIconClick = (index) => {
-  //   setActiveIndex(index);
-  // };
-  // const handleLinkClick = (index) => {
-  //   setActiveIndex(index);
-  // };
+
   const handleClick = (index, path) => {
     setActiveIndex(index);
     navigate(path);
@@ -41,39 +36,46 @@ function Sidebar() {
   const sidebarTopLinks = [
     {
       name: "Dashboard",
-      link: "/assets/icons/profile.png",
-      icon: <TbLayoutDashboardFilled />,
+      icon: "/assets/icons/dashboard_light.png",
+      activeIcon: "/assets/icons/dashboard_highlight.png",
+      // icon: <TbLayoutDashboardFilled />,
       path: "/dashboard",
     },
     {
       name: "Battle Arena",
-      link: "/assets/icons/battle.png",
-      icon: <RiSwordFill />,
+      icon: "/assets/icons/stock-market_light.png",
+      activeIcon: "/assets/icons/stock-market_highlight.png",
+      // icon: <RiSwordFill />,
       path: "/battle",
     },
     {
+      name: "Profile",
+      icon: "/assets/icons/profile_light.png",
+      activeIcon: "/assets/icons/profile_hightlight.png",
+      // icon: <RiSwordFill />,
+      path: "/profile",
+    },
+    {
       name: "History",
-      link: "/assets/icons/log-data.png",
-      icon: <FaHistory />,
+      icon: "/assets/icons/log-data_light.png",
+      activeIcon: "/assets/icons/log-data_highlight.png",
+      // icon: <FaHistory />,
       path: "/history-log",
     },
     {
       name: "Leaderboard",
-      link: "/assets/icons/podium.png",
-      icon: <FaRankingStar />,
+      icon: "/assets/icons/podium_light.png",
+
+      activeIcon: "/assets/icons/podium_hightlight.png",
+      // icon: <FaRankingStar />,
       path: "/leadersboard",
     },
     {
-      name: "Friends",
-      link: "/assets/icons/friends.png",
-      icon: <FaUserFriends />,
+      name: "Social",
+      icon: "/assets/icons/friends_light.png",
+      activeIcon: "/assets/icons/friends_highlight.png",
+      // icon: <FaUserFriends />,
       path: "/social",
-    },
-    {
-      name: "Invitations",
-      link: "/assets/icons/invitations.png",
-      icon: <FaEnvelopeOpenText />,
-      path: "/invitation",
     },
   ];
 
@@ -105,7 +107,12 @@ function Sidebar() {
                   } text-xl cursor-pointer`}
                   onClick={() => handleClick(index, ele.path)}
                 >
-                  {ele.icon}
+                  {/* {ele.icon} */}
+                  {location.pathname.startsWith(ele.path) ? (
+                    <img src={ele.activeIcon} className="" />
+                  ) : (
+                    <img src={ele.icon} className="" />
+                  )}
                 </span>
                 {/* <img
                   className="h-7 cursor-pointer"
@@ -156,9 +163,12 @@ function Sidebar() {
               className="h-[72px]"
             />
           </div>
-          <div className="flex flex-col gap-[30px] mt-5">
+          <div className="flex flex-col gap-[33.5px] mt-5">
             {sidebarTopLinks.map((ele, index) => (
-              <div key={index} className="h-7 flex items-center -mt-[1px] ml-4">
+              <div
+                key={index}
+                className="h-7 flex items-center  -mt-[ 1px] ml-4"
+              >
                 <p
                   className={`font-poppins ${
                     location.pathname.startsWith(ele.path)

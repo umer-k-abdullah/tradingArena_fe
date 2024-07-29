@@ -1,15 +1,20 @@
+import React, { useEffect, useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 
-const InviteFriend = ({
+const OwnFriendRequestsCard = ({
   firstName,
   lastName,
   username,
   profileImage,
+  id,
+  removeOwnRequest,
   country,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
-  console.log(country);
+
   const fetchCountries = async (country) => {
     try {
       const response = await axios.get(
@@ -37,37 +42,47 @@ const InviteFriend = ({
     fetchCountries(country);
   }, []);
 
+  const cancelRequest = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.delete(`/cancelRequest/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      removeOwnRequest(id);
+      toast.success("Friend Request deleted successfuly");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
-    <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 px-6 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
-      <div className="grid grid-cols-3 justify-normal items-center gap-10">
-        {/* profile info */}
+    <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
+      <div className="flex justify-normal items-center gap-10">
         <div className="flex items-center gap-4">
-          {/* later on will replace with image */}
-          <div className="rounded-full bg-white h-12 w-12">
-            <img src={profileImage} className="w-12 h-12 rounded-full" alt="" />
+          <div className="rounded-full bg-white h-16 w-16">
+            <img src={profileImage} className="w-16 h-16 rounded-full" alt="" />
           </div>
           <div className="flex flex-col">
             <span>{firstName + " " + lastName}</span>
-            <span>@{username}</span>
+            <span>{"@" + username}</span>
           </div>
         </div>
-        {/* flag */}
         {countryFlag && (
-         <div className="flex justify-center">
           <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
-         </div>
         )}
-        {/* skill score */}
         <div className="flex justify-center items-center gap-1">
           <img src="/assets/icons/win-streak.png" className="h-[20px]" alt="" />
-          <p className="text-[#EDF1FA] text-[13px]">7830</p>
+          <p className="text-[#EDF1FA] text-[13px]">0000</p>
         </div>
       </div>
-      <button className="bg-themeGreen text-themeBlack p-3 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium">
-        Challenge Friend
-      </button>
+      <div className="flex justify-normal items-center gap-[10px]">
+        <FaRegTrashAlt
+          className=" text-red-700 text-3xl mr-5 cursor-pointer"
+          onClick={cancelRequest}
+        />
+      </div>
     </div>
   );
 };
 
-export default InviteFriend;
+export default OwnFriendRequestsCard;
