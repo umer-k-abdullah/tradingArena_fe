@@ -79,7 +79,7 @@ const FriendRequestCard = ({
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
-      <div className="flex justify-normal items-center gap-10">
+      <div className="grid grid-cols-3 justify-normal items-center gap-10">
         <div className="flex items-center gap-4">
           <div className="rounded-full bg-white h-16 w-16">
             <img src={profileImage} className="w-16 h-16 rounded-full" alt="" />
@@ -91,7 +91,9 @@ const FriendRequestCard = ({
         </div>
         {/* <img src="/assets/icons/flag.png" alt="" /> */}
         {countryFlag && (
-          <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
+          <div className="flex justify-center items-center">
+            <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
+          </div>
         )}
         <div className="flex justify-center items-center gap-1">
           <img src="/assets/icons/win-streak.png" className="h-[20px]" alt="" />

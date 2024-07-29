@@ -54,9 +54,11 @@ function HistoryLog() {
       </div>
       <div className="flex flex-col gap-2 mx-auto w-[75%] my-3 font-poppins">
         
-        <div className="flex w-full justify-between pl-20">
+        <div className="grid grid-cols-6 justify-between">
           {statsLabels.map((elem) => (
-            <span className="text-[#EDF1FAB2] text-base">{elem}</span>
+            <div className="flex justify-center">
+              <span className="text-[#EDF1FAB2] text-base">{elem}</span>
+            </div>
           ))}
         </div>
         <div className="flex flex-col gap-3 overflow-y-auto h-full custom-scrollbar p-2">

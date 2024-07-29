@@ -84,9 +84,11 @@ function Overview() {
           <h3 className="text-white text-lg">Previous Matches</h3>
           <div className="text-themeGreen cursor-pointer hover:underline" onClick={()=>{navigate("/history-log")}}>View All</div>
         </div>
-        <div className="flex w-full justify-between pl-20">
+        <div className="grid grid-cols-6 w-full justify-between ">
           {statsLabels.map((elem) => (
-            <span className="text-[#EDF1FAB2] text-base">{elem}</span>
+            <div className="flex justify-center">
+              <span className="text-[#EDF1FAB2] text-base">{elem}</span>
+            </div>
           ))}
         </div>
         <div className="flex flex-col gap-3 overflow-y-auto h-full custom-scrollbar">
