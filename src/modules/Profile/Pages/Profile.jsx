@@ -8,6 +8,7 @@ function Profile() {
   const [memberSince, setMemberSince] = useState("");
   const [countryFlag, setCountryFlag] = useState("");
   const [userStats, setUserStats] = useState({});
+
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -96,7 +97,7 @@ function Profile() {
   const miniStatsCardData = [
     {
       label: "Win/Loss Record",
-      value: `${userStats.battlesWon}W - ${userStats.battlesLost}L`,
+      value: `${userStats.battlesWon}W - ${userStats.battlesLost}L`,  
     },
     { label: "Drawn Battles Record", value: `${userStats.battlesDraw}` },
     { label: "Highest Win Streak", value: `${userStats.winStreak}` },
@@ -243,7 +244,13 @@ function Profile() {
         </div>
         <div className="grid grid-cols-5 w-full gap-5">
           {miniStatsCardData.map((ele, index) => (
-            <MiniStatCard key={index} label={ele.label} value={ele.value} />
+            <MiniStatCard
+              key={index}
+              label={ele.label}
+              value={
+                userStats && userStats[ele.value] ? userStats[ele.value] : 0
+              }
+            />
           ))}
         </div>
         <div className="bg-[#0D0D0D] w-full h-[400px] p-6 rounded-xl border border-themeGray input-shadow mb-4">

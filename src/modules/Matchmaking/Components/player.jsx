@@ -29,7 +29,7 @@ const Player = ({ username, profileImage, battlesWon, playerXp }) => {
     <div className="font-poppins flex flex-col justify-center items-center gap-5">
       <div>
         <img
-          src="/assets/images/avatar1.png"
+          src={profileImage}
           className="w-[200px] h-[200px] rounded-full"
           alt=""
         />

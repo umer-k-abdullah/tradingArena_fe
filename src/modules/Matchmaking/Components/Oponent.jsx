@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
-const Oponent = () => {
+const Oponent = ({ name, profileImage, battleWon, skillScore }) => {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("/assets/images/avatar1.png");
   const [stats, setStats] = useState([
@@ -24,7 +24,26 @@ const Oponent = () => {
       inc_dec: "+0%",
     },
   ]);
-
+  const images = [
+    "/assets/images/avatar1.png",
+    "/assets/images/avatar2.png",
+    "/assets/images/avatar3.png",
+    "/assets/images/avatar4.png",
+    "/assets/images/avatar5.png",
+    "/assets/images/avatar6.png",
+    "/assets/images/avatar1.png",
+    "/assets/images/avatar2.png",
+    "/assets/images/avatar3.png",
+    "/assets/images/avatar4.png",
+    "/assets/images/avatar5.png",
+    "/assets/images/avatar6.png",
+    "/assets/images/avatar1.png",
+    "/assets/images/avatar2.png",
+    "/assets/images/avatar3.png",
+    "/assets/images/avatar4.png",
+    "/assets/images/avatar5.png",
+    "/assets/images/avatar6.png",
+  ];
   const usernames = Array.from({ length: 100 }, (_, i) => `User${i + 1}`);
   const avatars = [
     "/assets/images/avatar1.png",
@@ -63,40 +82,31 @@ const Oponent = () => {
     <div className="font-poppins flex flex-col justify-center items-center gap-5">
       <div className="w-[200px] max-h-[200px] rounded-full border-2 overflow-hidden">
         {/* For the animator to work properly, the height of the 'animate scroll' div should be one image's height less than total images */}
-        <div className="animate-scroll h-[1000px]">
+        {profileImage ? (
           <img
-            src="/assets/images/avatar1.png"
+            key={index}
+            src={profileImage}
             className="w-[200px] h-[200px] rounded-full"
             alt="avatar"
           />
-          <img
-            src="/assets/images/avatar2.png"
-            className="w-[200px] h-[200px] rounded-full"
-            alt="avatar"
-          />
-          <img
-            src="/assets/images/avatar3.png"
-            className="w-[200px] h-[200px] rounded-full"
-            alt="avatar"
-          />
-          <img
-            src="/assets/images/avatar4.png"
-            className="w-[200px] h-[200px] rounded-full"
-            alt="avatar"
-          />
-          <img
-            src="/assets/images/avatar5.png"
-            className="w-[200px] h-[200px] rounded-full"
-            alt="avatar"
-          />
-          <img
-            src="/assets/images/avatar6.png"
-            className="w-[200px] h-[200px] rounded-full"
-            alt="avatar"
-          />
-        </div>
+        ) : (
+          <div className="animate-scroll h-[1000px]">
+            {images.map((ele, index) => (
+              <img
+                key={index}
+                src={ele}
+                className="w-[200px] h-[200px] rounded-full"
+                alt="avatar"
+              />
+            ))}
+          </div>
+        )}
       </div>
-      <p className="font-medium text-[30px] leading-[45px] ">{username}</p>
+      {name ? (
+        <p className="font-medium text-[30px] leading-[45px] ">{name}</p>
+      ) : (
+        <p className="font-medium text-[30px] leading-[45px] ">{username}</p>
+      )}
       <div className="flex justify-between items-center gap-2">
         {stats.map((ele, index) => (
           <Card
