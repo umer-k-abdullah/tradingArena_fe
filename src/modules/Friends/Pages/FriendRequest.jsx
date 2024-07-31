@@ -5,37 +5,43 @@ import { FaAngleDown } from "react-icons/fa6";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
 import OwnFriendRequestsCard from "../Components/OwnFriendRequestsCard";
+import Spinner from "../../../components/Spinner";
 
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
   const [ownRequests, setOwnRequests] = useState([]);
   const [toggleSendFriendRequest, setToggleSendFriendRequest] = useState(false);
   const [recievedFriendRequests, setRecievedFrinedReuests] = useState(false);
+  const [isFriendRequestLoading, setIsFriendRequestLoading] = useState(false);
+  const [isOwnFriendLoading, setIsOwnFriendLoading] = useState(false);
 
   const fetchFriendRequests = async () => {
     try {
+      setIsFriendRequestLoading(true);
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get("/friendRequestsList", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data);
       setRequests(response.data);
+      setIsFriendRequestLoading(false);
     } catch (error) {
+      setIsFriendRequestLoading(false);
       toast.error(error.message);
     }
   };
 
   const fetchOwnRequests = async () => {
     try {
+      setIsOwnFriendLoading(true);
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get("/ownrequestsList", {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      console.log(response?.data);
       setOwnRequests(response?.data);
+      setIsOwnFriendLoading(false);
     } catch (error) {
       console.log(error);
+      setIsOwnFriendLoading(false);
     }
   };
 
@@ -119,7 +125,10 @@ const FriendRequest = () => {
               recievedFriendRequests ? "max-h-[210px] opacity-100" : "max-h-0"
             }`}
           >
-            {requests &&
+            {isFriendRequestLoading ? (
+              <Spinner />
+            ) : (
+              requests &&
               requests.length > 0 &&
               requests.map((request, index) => (
                 <FriendRequestCard
@@ -133,7 +142,8 @@ const FriendRequest = () => {
                   profileImage={request.User.profileImage}
                   removeRequest={removeRequest}
                 />
-              ))}
+              ))
+            )}
           </div>
         </div>
       </div>

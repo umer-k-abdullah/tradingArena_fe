@@ -82,7 +82,6 @@ function Navbar() {
             </div>
           )}
         </div>
-
         <div
           className="w-40 h-11 bg-[#010101] text-white flex justify-between items-center font-poppins border cursor-pointer border-[#EDF1FA] gray-shadow rounded-full pr-3 relative"
           onMouseEnter={() => setUserIsOpen(true)}
@@ -107,6 +106,7 @@ function Navbar() {
           <i>
             <FaCaretDown />
           </i>
+
           {userIsOpen && (
             <div className="absolute top-11 overflow-hidden right-0 w-60 bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md shadow-lg z-10">
               <div className="py-2 px-2 cursor-pointer flex items-center gap-2">
