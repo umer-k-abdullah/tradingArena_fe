@@ -1,9 +1,11 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const FriendsPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   return (
     <div className="h-full w-full pt-20 text-white pl-36 gap-[20px] flex flex-col font-poppins">

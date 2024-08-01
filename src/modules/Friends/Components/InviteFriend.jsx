@@ -6,36 +6,19 @@ const InviteFriend = ({
   lastName,
   username,
   profileImage,
+  countries,
   country,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
-  console.log(country);
-  const fetchCountries = async (country) => {
-    try {
-      const response = await axios.get(
-        "https://restfulcountries.com/api/v1/countries",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
-          },
-        }
-      );
-      console.log(response.data.data);
-      const countryData = response.data.data.find(
-        (ele) => ele.name === country
-      );
-      console.log(countryData);
-      setCountryFlag(countryData?.href?.flag || "");
-    } catch (error) {
-      console.error("Error fetching countries data", error);
-    }
-  };
-
   useEffect(() => {
-    fetchCountries(country);
-  }, []);
+    if (countries.length > 0) {
+      console.log(countries);
+      const countryData = countries.find((ele) => ele.name == country);
+      console.log(countryData);
+      console.log(countryData?.href?.flag);
+      setCountryFlag(countryData?.href?.flag);
+    }
+  }, [countries]);
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 px-6 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
@@ -53,9 +36,9 @@ const InviteFriend = ({
         </div>
         {/* flag */}
         {countryFlag && (
-         <div className="flex justify-center">
-          <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
-         </div>
+          <div className="flex justify-center">
+            <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
+          </div>
         )}
         {/* skill score */}
         <div className="flex justify-center items-center gap-1">

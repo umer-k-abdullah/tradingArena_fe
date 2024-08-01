@@ -51,19 +51,19 @@ function Profile() {
     }
   };
 
-  const fetchUserStats = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/getUserStats", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUserStats(response?.data?.UserStats);
-    } catch (error) {}
-  };
+  // const fetchUserStats = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axiosInstance.get("/getUserStats", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     setUserStats(response?.data?.UserStats);
+  //   } catch (error) {}
+  // };
 
-  useEffect(() => {
-    fetchUserStats();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserStats();
+  // }, []);
 
   useEffect(() => {
     fetchUserData();
@@ -97,7 +97,7 @@ function Profile() {
   const miniStatsCardData = [
     {
       label: "Win/Loss Record",
-      value: `${userStats.battlesWon}W - ${userStats.battlesLost}L`,  
+      value: `${userStats.battlesWon}W - ${userStats.battlesLost}L`,
     },
     { label: "Drawn Battles Record", value: `${userStats.battlesDraw}` },
     { label: "Highest Win Streak", value: `${userStats.winStreak}` },

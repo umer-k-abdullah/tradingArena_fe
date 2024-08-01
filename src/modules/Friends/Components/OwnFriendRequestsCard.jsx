@@ -12,35 +12,43 @@ const OwnFriendRequestsCard = ({
   id,
   removeOwnRequest,
   country,
+  countries,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
-
-  const fetchCountries = async (country) => {
-    try {
-      const response = await axios.get(
-        "https://restfulcountries.com/api/v1/countries",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
-          },
-        }
-      );
-      console.log(response.data.data);
-      const countryData = response.data.data.find(
-        (ele) => ele.name === country
-      );
-      console.log(countryData);
-      setCountryFlag(countryData?.href?.flag || "");
-    } catch (error) {
-      console.error("Error fetching countries data", error);
-    }
-  };
-
   useEffect(() => {
-    fetchCountries(country);
-  }, []);
+    if (countries.length > 0) {
+      const countryData = countries.find((ele) => ele.name == country);
+      console.log(countryData)
+      setCountryFlag(countryData?.href?.flag)
+    }
+  }, [countries]);
+
+  // const fetchCountries = async (country) => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://restfulcountries.com/api/v1/countries",
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization:
+  //             "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data.data);
+  //     const countryData = response.data.data.find(
+  //       (ele) => ele.name === country
+  //     );
+  //     console.log(countryData);
+  //     setCountryFlag(countryData?.href?.flag || "");
+  //   } catch (error) {
+  //     console.error("Error fetching countries data", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchCountries(country);
+  // }, []);
 
   const cancelRequest = async () => {
     try {
