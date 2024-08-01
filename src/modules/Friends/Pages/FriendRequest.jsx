@@ -6,14 +6,37 @@ import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
 import OwnFriendRequestsCard from "../Components/OwnFriendRequestsCard";
 import Spinner from "../../../components/Spinner";
+import axios from "axios";
 
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
   const [ownRequests, setOwnRequests] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [toggleSendFriendRequest, setToggleSendFriendRequest] = useState(false);
   const [recievedFriendRequests, setRecievedFrinedReuests] = useState(false);
   const [isFriendRequestLoading, setIsFriendRequestLoading] = useState(false);
   const [isOwnFriendLoading, setIsOwnFriendLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://restfulcountries.com/api/v1/countries",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
+            },
+          }
+        );
+        setCountries(response.data.data);
+      } catch (error) {
+        console.error("Error fetching countries data", error);
+      }
+    };
+    fetchCountries();
+  }, []);
 
   const fetchFriendRequests = async () => {
     try {
@@ -101,6 +124,7 @@ const FriendRequest = () => {
                   lastName={requests.lastName}
                   username={requests.username}
                   country={requests.country}
+                  countries={countries}
                   profileImage={requests.profileImage}
                   id={requests.id}
                   removeOwnRequest={removeOwnRequest}

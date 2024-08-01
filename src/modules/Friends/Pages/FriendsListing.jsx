@@ -3,11 +3,35 @@ import FriendsSearch from "../Components/FriendsSearch";
 import InviteFriend from "../Components/InviteFriend";
 import axiosInstance from "../../../utils/axios";
 import Spinner from "../../../components/Spinner";
+import axios from "axios";
 
 const FriendsListing = () => {
   const [friends, setFriends] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [countries, setCountries] = useState("");
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://restfulcountries.com/api/v1/countries",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
+            },
+          }
+        );
+        setCountries(response.data.data);
+      } catch (error) {
+        console.error("Error fetching countries data", error);
+      }
+    };
+    fetchCountries();
+  }, []);
+
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -18,7 +42,7 @@ const FriendsListing = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
+        // console.log(response.data);
         setFriends(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -51,6 +75,7 @@ const FriendsListing = () => {
               lastName={ele.lastName}
               profileImage={ele.profileImage}
               username={ele.username}
+              countries={countries}
               country={ele.country}
             />
           ))
