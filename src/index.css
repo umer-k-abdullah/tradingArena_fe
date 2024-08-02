@@ -193,20 +193,20 @@ input[type="radio"]:checked + .custom-radio-label::after {
 /* Custom styles for select and option elements */
 
 .custom-select option {
-  background-color: #0D0D0D;
-  color: #FFFFFF;
+  background-color: #0d0d0d;
+  color: #ffffff;
 }
 
 .custom-select option:checked {
-  background-color: #2D2D2D; /* Lighter gray for selected option */
-  color: #FFFFFF;
+  background-color: #2d2d2d; /* Lighter gray for selected option */
+  color: #ffffff;
 }
 
 .custom-select option:hover,
 .custom-select option:focus,
 .custom-select option:checked,
 .custom-select option[selected] {
-  background-color: #3C3C3C; /* Lighter gray for selected/hovered option */
+  background-color: #3c3c3c; /* Lighter gray for selected/hovered option */
   color: white; /* White text */
 }
 .custom-radio input[type="radio"] {
@@ -237,10 +237,45 @@ input[type="radio"]:checked + .custom-radio-label::after {
 
 .custom-select option {
   background-color: black; /* Background color */
-  color: white;            /* Text color */
-  padding: 10px;           /* Padding */
+  color: white; /* Text color */
+  padding: 10px; /* Padding */
 }
 
 .custom-select option:checked {
   background-color: lightgray; /* Checked option background color */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* .animate-scroll {
+  overflow: hidden;
+  position: relative;
+  height: 200px;
+  width: 200px;
+}
+
+.animate-scroll img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: scroll 1s linear infinite;
+} */
+
+.animate-scroll {
+  display: flex;
+  flex-direction: column;
+  /* height: 200px; 200px * number of images */
+  animation: scroll 2s linear infinite;
+}
+
+.animate-scroll img {
+  width: 200px;
+  height: 200px;
 }

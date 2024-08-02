@@ -2,21 +2,51 @@ import React, { useEffect, useState } from "react";
 import FriendsSearch from "../Components/FriendsSearch";
 import InviteFriend from "../Components/InviteFriend";
 import axiosInstance from "../../../utils/axios";
+import Spinner from "../../../components/Spinner";
+import axios from "axios";
 
 const FriendsListing = () => {
   const [friends, setFriends] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [countries, setCountries] = useState("");
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://restfulcountries.com/api/v1/countries",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
+            },
+          }
+        );
+        setCountries(response.data.data);
+      } catch (error) {
+        console.error("Error fetching countries data", error);
+      }
+    };
+    fetchCountries();
+  }, []);
+
   useEffect(() => {
     const fetchFriends = async () => {
       try {
+        setIsLoading(true);
         const token = localStorage.getItem("token");
         const response = await axiosInstance.get("/getFriendsList", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        // console.log(response.data);
         setFriends(response.data);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error(error);
       }
     };
@@ -35,7 +65,9 @@ const FriendsListing = () => {
     <div className="text-white mt-[9px]">
       <FriendsSearch setSearchTerm={setSearchTerm} />
       <div className="mt-[15px] mx-auto w-[75%] flex flex-col justify-normal items-start gap-[15px] overflow-y-auto h-[400px] hide-scrollbar">
-        {friends && friends.length > 0 ? (
+        {isLoading ? (
+          <Spinner />
+        ) : friends && friends.length > 0 ? (
           filteredFriends.map((ele, index) => (
             <InviteFriend
               key={index}
@@ -43,6 +75,8 @@ const FriendsListing = () => {
               lastName={ele.lastName}
               profileImage={ele.profileImage}
               username={ele.username}
+              countries={countries}
+              country={ele.country}
             />
           ))
         ) : (

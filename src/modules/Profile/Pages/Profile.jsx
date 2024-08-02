@@ -52,19 +52,19 @@ function Profile() {
     }
   };
 
-  const fetchUserStats = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/getUserStats", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUserStats(response?.data?.UserStats);
-    } catch (error) {}
-  };
+  // const fetchUserStats = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axiosInstance.get("/getUserStats", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     setUserStats(response?.data?.UserStats);
+  //   } catch (error) {}
+  // };
 
-  useEffect(() => {
-    fetchUserStats();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserStats();
+  // }, []);
 
   useEffect(() => {
     fetchUserData();
@@ -304,7 +304,13 @@ function Profile() {
         </div>
         <div className="grid grid-cols-5 w-full gap-5">
           {miniStatsCardData.map((ele, index) => (
-            <MiniStatCard key={index} label={ele.label} value={ele.value} />
+            <MiniStatCard
+              key={index}
+              label={ele.label}
+              value={
+                userStats && userStats[ele.value] ? userStats[ele.value] : 0
+              }
+            />
           ))}
         </div>
         <div className="bg-[#0D0D0D] w-full h-[400px] p-6 rounded-xl border border-themeGray input-shadow mb-4">

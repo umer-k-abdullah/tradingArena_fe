@@ -1,9 +1,28 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-const InviteFriend = ({ firstName, lastName, username, profileImage }) => {
+const InviteFriend = ({
+  firstName,
+  lastName,
+  username,
+  profileImage,
+  countries,
+  country,
+}) => {
+  const [countryFlag, setCountryFlag] = useState("");
+  useEffect(() => {
+    if (countries.length > 0) {
+      console.log(countries);
+      const countryData = countries.find((ele) => ele.name == country);
+      console.log(countryData);
+      console.log(countryData?.href?.flag);
+      setCountryFlag(countryData?.href?.flag);
+    }
+  }, [countries]);
+
   return (
-    <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2  bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
-      <div className="flex justify-normal items-center gap-10">
+    <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 px-6 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
+      <div className="grid grid-cols-3 justify-normal items-center gap-10">
         {/* profile info */}
         <div className="flex items-center gap-4">
           {/* later on will replace with image */}
@@ -16,7 +35,11 @@ const InviteFriend = ({ firstName, lastName, username, profileImage }) => {
           </div>
         </div>
         {/* flag */}
-        <img src="/assets/icons/flag.png" alt="" />
+        {countryFlag && (
+          <div className="flex justify-center">
+            <img src={countryFlag} alt="Flag" className="h-[25px] w-[35px]" />
+          </div>
+        )}
         {/* skill score */}
         <div className="flex justify-center items-center gap-1">
           <img src="/assets/icons/win-streak.png" className="h-[20px]" alt="" />

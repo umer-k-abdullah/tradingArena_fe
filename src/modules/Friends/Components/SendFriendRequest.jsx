@@ -3,19 +3,23 @@ import { FormikProvider, useFormik, Form, Field } from "formik";
 import { object, string } from "yup";
 import { FaSearch } from "react-icons/fa";
 import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const searchSchema = object({
   identifier: string().required(),
 });
-const SendFriendRequest = () => {
+const SendFriendRequest = ({ refreshRequests }) => {
   const handleSubmit = async (values) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.post("/sendFriendRequest", values, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response);
-    } catch (error) {}
+      toast.success("Friend request sent");
+      refreshRequests();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const formik = useFormik({
@@ -27,7 +31,7 @@ const SendFriendRequest = () => {
   });
 
   return (
-    <div className="w-full h-full font-poppins">
+    <div className="w-full  font-poppins">
       <FormikProvider value={formik}>
         <Form className="w-full h-full mx-auto">
           <div className="flex justify-center items-center gap-[10px] p-2 mx-auto">
