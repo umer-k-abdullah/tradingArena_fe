@@ -8,6 +8,7 @@ function Profile() {
   const [memberSince, setMemberSince] = useState("");
   const [countryFlag, setCountryFlag] = useState("");
   const [userStats, setUserStats] = useState({});
+  const [skeletonStatus, setSkeletonStatus] = useState(true);
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -24,6 +25,7 @@ function Profile() {
 
       const formattedDate = `${month}/${year}`;
       setMemberSince(formattedDate);
+      setSkeletonStatus(false)
     } catch (error) {
       console.error("Error fetching user data", error);
     }
@@ -82,7 +84,6 @@ function Profile() {
     </div>
   );
 
-  const testing = false;
   const ProfileSkeleton = () => (
     <div className="h-full w-full mt-20 pt-2 pl-32 gap-7 flex flex-col overflow-y-scroll custom-scrollbar">
       <div className="mx-auto w-[75%] flex justify-between items-center">
@@ -257,7 +258,7 @@ function Profile() {
     },
   };
   // Configure the Skeleton here for API calls
-  if (testing) {
+  if (skeletonStatus) {
     return <ProfileSkeleton />;
   }
   return (
