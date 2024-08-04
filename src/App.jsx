@@ -18,36 +18,39 @@ import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 import AccountSettings from "./modules/Profile/Pages/AccountSettings";
 import Profile from "./modules/Profile/Pages/Profile";
 import Matchmaking from "./modules/Matchmaking/Pages/Matchmaking";
+import { SocketProvider } from "./context/socketContext";
 
 const App = () => {
   return (
-    <div className="w-screen h-screen">
-      <ToastContainer />
-      <Routes>
-        <Route element={<FormsLayout />} path="">
-          <Route element={<Signin />} path="" />
-          <Route element={<SignUp />} path="signup" />
-          <Route element={<ForgotPassword />} path="forgot_password" />
-          <Route
-            element={<ResetPassword />}
-            path="resetPasswordForm/:id/:token"
-          />
-        </Route>
-        <Route element={<MainLayout />} path="">
-          <Route element={<Matchmaking />} path="matchmaking" />
-          <Route path="history-log" element={<HistoryLog />} />
-          <Route element={<Overview />} path="dashboard" />
-          <Route element={<LeadersBoard />} path="/leadersboard" />
-          <Route element={<FriendsPage />} path="social">
-            <Route element={<FriendsListing />} path="" />
-            <Route element={<FriendRequest />} path="friend-requests" />
+    <SocketProvider>
+      <div className="w-screen h-screen">
+        <ToastContainer />
+        <Routes>
+          <Route element={<FormsLayout />} path="">
+            <Route element={<Signin />} path="" />
+            <Route element={<SignUp />} path="signup" />
+            <Route element={<ForgotPassword />} path="forgot_password" />
+            <Route
+              element={<ResetPassword />}
+              path="resetPasswordForm/:id/:token"
+            />
           </Route>
-          <Route element={<BattleArena />} path="battle" />
-          <Route element={<Profile />} path="profile" />
-          <Route element={<AccountSettings />} path="account-settings" />
-        </Route>
-      </Routes>
-    </div>
+          <Route element={<MainLayout />} path="">
+            <Route element={<Matchmaking />} path="matchmaking" />
+            <Route path="history-log" element={<HistoryLog />} />
+            <Route element={<Overview />} path="dashboard" />
+            <Route element={<LeadersBoard />} path="/leadersboard" />
+            <Route element={<FriendsPage />} path="social">
+              <Route element={<FriendsListing />} path="" />
+              <Route element={<FriendRequest />} path="friend-requests" />
+            </Route>
+            <Route element={<BattleArena />} path="battle" />
+            <Route element={<Profile />} path="profile" />
+            <Route element={<AccountSettings />} path="account-settings" />
+          </Route>
+        </Routes>
+      </div>
+    </SocketProvider>
   );
 };
 
