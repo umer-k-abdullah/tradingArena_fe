@@ -5,12 +5,13 @@ import Spinner from "../../../components/Spinner";
 import Oponent from "../Components/Oponent";
 import io from "socket.io-client";
 
-const socketUrl = "http://localhost:3304";
+const socketUrl = "http://localhost:3304/matchmaking";
 
 const Matchmaking = () => {
   const [userData, setUserData] = useState(null);
   const [opponentData, setOpponentData] = useState(null);
   const [isSearching, setIsSearching] = useState(true);
+  const [noOpponentMessage, setNoOpponentMessage] = useState("");
 
   // Fetch user data
   const fetchUserData = async () => {
@@ -32,6 +33,9 @@ const Matchmaking = () => {
     const socket = io(socketUrl, {
       transports: ["websocket"],
       withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd"
+      }
     });
 
     console.log("Socket connection attempt:", socket);
@@ -59,7 +63,8 @@ const Matchmaking = () => {
       });
 
       // Listen for no match found event
-      socket.on("noMatchFound", () => {
+      socket.on("noOpponent", (data) => {
+        setNoOpponentMessage(data.message);
         setIsSearching(false);
         console.log("No match found. You can try again later.");
       });
@@ -88,7 +93,7 @@ const Matchmaking = () => {
       if (socket) {
         socket.off("connect");
         socket.off("matchFound");
-        socket.off("noMatchFound");
+        socket.off("noOpponent");
         socket.off("error");
         socket.disconnect();
       }
@@ -121,24 +126,28 @@ const Matchmaking = () => {
           className="w-[170px] h-[157px] -mt-20"
           alt=""
         />
-        <Oponent
-          name={
-            opponentData && opponentData.username ? opponentData.username : ""
-          }
-          profileImage={
-            opponentData && opponentData.profilePicture
-              ? opponentData.profilePicture
-              : ""
-          }
-          battleWon={
-            opponentData && opponentData.battlesWon
-              ? opponentData.battlesWon
-              : ""
-          }
-          skillScore={
-            opponentData && opponentData.playerXp ? opponentData.playerXp : ""
-          }
-        />
+        {noOpponentMessage ? (
+          <div>{noOpponentMessage}</div>
+        ) : (
+          <Oponent
+            name={
+              opponentData && opponentData.username ? opponentData.username : ""
+            }
+            profileImage={
+              opponentData && opponentData.profilePicture
+                ? opponentData.profilePicture
+                : ""
+            }
+            battleWon={
+              opponentData && opponentData.battlesWon
+                ? opponentData.battlesWon
+                : ""
+            }
+            skillScore={
+              opponentData && opponentData.playerXp ? opponentData.playerXp : ""
+            }
+          />
+        )}
       </div>
     </div>
   );
