@@ -22,7 +22,7 @@ const InviteFriend = ({
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 px-6 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
-      <div className="grid grid-cols-6 justify-center items-center gap-10">
+      <div className="grid grid-cols-6 justify-center items-center gap-10 w-[50%]">
         {/* profile info */}
         <div className="flex items-center gap-4 col-span-3">
           {/* later on will replace with image */}

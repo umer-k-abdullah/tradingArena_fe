@@ -23,33 +23,6 @@ const OwnFriendRequestsCard = ({
     }
   }, [countries]);
 
-  // const fetchCountries = async (country) => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://restfulcountries.com/api/v1/countries",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization:
-  //             "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
-  //         },
-  //       }
-  //     );
-  //     console.log(response.data.data);
-  //     const countryData = response.data.data.find(
-  //       (ele) => ele.name === country
-  //     );
-  //     console.log(countryData);
-  //     setCountryFlag(countryData?.href?.flag || "");
-  //   } catch (error) {
-  //     console.error("Error fetching countries data", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCountries(country);
-  // }, []);
-
   const cancelRequest = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -68,7 +41,7 @@ const OwnFriendRequestsCard = ({
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
-      <div className="grid grid-cols-6 justify-center items-center gap-10">
+      <div className="grid grid-cols-6 justify-center items-center gap-10 w-[50%]">
         <div className="flex items-center gap-4 col-span-3">
           <div className="rounded-full bg-white h-16 w-16">
             <img src={profileImage} className="w-16 h-16 rounded-full" alt="" />
