@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import axiosInstance from "../../../utils/axios";
+import { toast } from "react-toastify";
 
 const InviteFriend = ({
   firstName,
@@ -8,6 +10,7 @@ const InviteFriend = ({
   profileImage,
   countries,
   country,
+  id,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
   useEffect(() => {
@@ -19,6 +22,19 @@ const InviteFriend = ({
       setCountryFlag(countryData?.href?.flag);
     }
   }, [countries]);
+  const challengeFriend = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.get(
+        `/api/challenge/challengeFriend/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log(response);
+      toast.success("Challenge request sent");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="flex w-full text-white items-center p-3 justify-between h-[28%] border-2 px-6 bg-themeBlack border-themeGreen rounded-md stats-card-win-shadow font-poppins">
@@ -46,7 +62,10 @@ const InviteFriend = ({
           <p className="text-[#EDF1FA] text-[13px]">7830</p>
         </div>
       </div>
-      <button className="bg-themeGreen text-themeBlack p-3 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium">
+      <button
+        className="bg-themeGreen text-themeBlack p-3 rounded-[5px] flex justify-center items-center text-[18px] leading-[27px]  font-poppins font-medium"
+        onClick={challengeFriend}
+      >
         Challenge Friend
       </button>
     </div>
