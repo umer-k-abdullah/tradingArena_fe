@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TopCard from "../Components/TopCard";
 import InviteCard from "../Components/InviteCard";
+import axiosInstance from "../../../utils/axios";
+import axios from "axios";
 
 const BattleArena = () => {
+  const [challengeRequests, setChallengeRequest] = useState();
+  const [countries, setCountries] = useState("");
+
+  useEffect(() => {
+    const getChallengeRequests = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axiosInstance.get(
+          "/api/challenge/displayChallengeRequestsReceived",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setChallengeRequest(response.data);
+      } catch (error) {}
+    };
+    getChallengeRequests();
+  }, []);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://restfulcountries.com/api/v1/countries",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer 1318|1DrmOUYos9sujlHAysZn64oe8jkGH0RbpZ76dWdI",
+            },
+          }
+        );
+        setCountries(response.data.data);
+      } catch (error) {
+        console.error("Error fetching countries data", error);
+      }
+    };
+    fetchCountries();
+  }, []);
   const topCards = [
     {
       name: "Quick Match",
@@ -38,15 +77,25 @@ const BattleArena = () => {
       </div>
       <div className="flex flex-col gap-2 mx-auto w-[75%] my-3  font-poppins">
         <h3 className="text-[20px] leading-[30px] font-light">Match Invites</h3>
-        {invites && !invites.length > 0 ? (
+        {challengeRequests && challengeRequests.length > 0 ? (
           <div className="flex flex-col justify-start items-start gap-4">
-            <InviteCard />
-            <InviteCard />
-            <InviteCard />
+            {challengeRequests.map((ele, index) => (
+              <InviteCard
+                key={index}
+                id={ele.id}
+                userId={ele.Sender.id}
+                firstName={ele.Sender.firstName}
+                lastName={ele.Sender.lastName}
+                profileImage={ele.Sender.profileImage}
+                username={ele.Sender.username}
+                countries={countries}
+                country={ele.Sender.country}
+              />
+            ))}
           </div>
         ) : (
-          <div className="mx-auto border-[1px] border-[#EDF1FA] rounded-[10px] flex justify-center items-center w-full h-[75px]">
-            <p className="text-[20px] leading-[30px] text-center text-[#EDF1FAB2]">
+          <div className="mx-auto rounded-[10px] flex justify-center items-center w-full h-[75px] mt-20">
+            <p className="text-[30px] leading-[30px] text-center text-white opacity-50 font-zen-dots">
               No Invites at the moment
             </p>
           </div>

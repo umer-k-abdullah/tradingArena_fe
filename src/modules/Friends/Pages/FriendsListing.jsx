@@ -71,6 +71,7 @@ const FriendsListing = () => {
           filteredFriends.map((ele, index) => (
             <InviteFriend
               key={index}
+              id={ele.id}
               firstName={ele.firstName}
               lastName={ele.lastName}
               profileImage={ele.profileImage}

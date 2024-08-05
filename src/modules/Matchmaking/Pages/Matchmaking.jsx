@@ -5,19 +5,20 @@ import Spinner from "../../../components/Spinner";
 import Oponent from "../Components/Oponent";
 import io from "socket.io-client";
 
-const socketUrl = "http://localhost:3304";
+const socketUrl = "http://localhost:3304/matchmaking";
 
 const Matchmaking = () => {
   const [userData, setUserData] = useState(null);
   const [opponentData, setOpponentData] = useState(null);
   const [isSearching, setIsSearching] = useState(true);
+  const [noOpponentMessage, setNoOpponentMessage] = useState("");
 
   // Fetch user data
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
       console.log("Token:", token);
-      const response = await axiosInstance.get("/getUserData", {
+      const response = await axiosInstance.get("/api/matchmaking/getUserData", {
         headers: { Authorization: `Bearer ${token} ` },
       });
       setUserData(response.data.userDetails);
@@ -32,6 +33,9 @@ const Matchmaking = () => {
     const socket = io(socketUrl, {
       transports: ["websocket"],
       withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd",
+      },
     });
 
     console.log("Socket connection attempt:", socket);
@@ -50,6 +54,7 @@ const Matchmaking = () => {
 
         if (data.opponentDetails) {
           setOpponentData(data.opponentDetails);
+          console.log(data.opponentDetails);
         } else {
           console.error("Unexpected data structure:", data);
         }
@@ -59,7 +64,8 @@ const Matchmaking = () => {
       });
 
       // Listen for no match found event
-      socket.on("noMatchFound", () => {
+      socket.on("noOpponent", (data) => {
+        setNoOpponentMessage(data.message);
         setIsSearching(false);
         console.log("No match found. You can try again later.");
       });
@@ -88,12 +94,16 @@ const Matchmaking = () => {
       if (socket) {
         socket.off("connect");
         socket.off("matchFound");
-        socket.off("noMatchFound");
+        socket.off("noOpponent");
         socket.off("error");
         socket.disconnect();
       }
     };
   }, []);
+
+  useEffect(() => {
+    console.log("oponent : ", opponentData);
+  }, [opponentData]);
 
   return (
     <div className="h-full w-full text-white pl-36 gap-[20px] flex flex-col font-poppins">
@@ -121,24 +131,27 @@ const Matchmaking = () => {
           className="w-[170px] h-[157px] -mt-20"
           alt=""
         />
-        <Oponent
-          name={
-            opponentData && opponentData.username ? opponentData.username : ""
-          }
-          profileImage={
-            opponentData && opponentData.profilePicture
-              ? opponentData.profilePicture
-              : ""
-          }
-          battleWon={
-            opponentData && opponentData.battlesWon
-              ? opponentData.battlesWon
-              : ""
-          }
-          skillScore={
-            opponentData && opponentData.playerXp ? opponentData.playerXp : ""
-          }
-        />
+        {opponentData ? (
+          <Player
+            username={
+              opponentData && opponentData.username ? opponentData.username : "_____"
+            }
+            profileImage={
+              opponentData && opponentData.profileImage
+                ? opponentData.profileImage
+                : "/assets/images/avatar1.png"
+            }
+            battleWon={
+              opponentData && opponentData.battlesWon ? opponentData.battlesWon : "-"
+            }
+            skillScore={opponentData && opponentData.playerXp ? opponentData.playerXp : "-"}
+            totalProfit={
+              opponentData && opponentData.totalProfit ? opponentData.totalProfit : "-"
+            }
+          />
+        ) : (
+          <Oponent />
+        )}
       </div>
     </div>
   );
