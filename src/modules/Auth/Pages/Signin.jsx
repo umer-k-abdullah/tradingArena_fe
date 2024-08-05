@@ -15,7 +15,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const handleSubmit = async (values) => {
     try {
-      const response = await axiosInstance.post("/signin", values);
+      const response = await axiosInstance.post("/api/auth/signin", values);
       console.log(response);
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("userData", JSON.stringify(response.data.user));

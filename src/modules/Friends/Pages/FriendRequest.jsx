@@ -42,7 +42,7 @@ const FriendRequest = () => {
     try {
       setIsFriendRequestLoading(true);
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/friendRequestsList", {
+      const response = await axiosInstance.get("/api/friend/friendRequestsList", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(response.data);
@@ -57,7 +57,7 @@ const FriendRequest = () => {
     try {
       setIsOwnFriendLoading(true);
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/ownrequestsList", {
+      const response = await axiosInstance.get("/api/friend/ownrequestsList", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOwnRequests(response?.data);

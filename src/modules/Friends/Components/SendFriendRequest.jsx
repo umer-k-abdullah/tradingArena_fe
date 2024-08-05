@@ -12,7 +12,7 @@ const SendFriendRequest = ({ refreshRequests }) => {
   const handleSubmit = async (values) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.post("/sendFriendRequest", values, {
+      const response = await axiosInstance.post("/api/friend/sendFriendRequest", values, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Friend request sent");

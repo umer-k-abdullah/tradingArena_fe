@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (values) => {
     try {
       // console.log(values);
-      const response = await axiosInstance.post("/forgetPassword", values);
+      const response = await axiosInstance.post("/api/password/forgetPassword", values);
       // console.log(response)
       toast.success("Reset password email sent");
     } catch (error) {

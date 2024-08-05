@@ -15,7 +15,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const handleSubmit = async (values) => {
     try {
-      const response = await axiosInstance.post("/signUp", values);
+      const response = await axiosInstance.post("/api/auth/signUp", values);
       console.log(response);
       if (response.status == 201) {
         toast.success("user signup successfuly");

@@ -14,13 +14,13 @@ function Navbar() {
   const [memberSince, setMemberSince] = useState();
   const handleAccountSettingsClick = () => {
     navigate("/account-settings", { state: { from: location.pathname } });
-    setIsOpen(!isOpen);
+    setUserIsOpen(!userIsOpen);
   };
 
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/getProfile", {
+      const response = await axiosInstance.get("/api/user/getProfile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -33,7 +33,7 @@ function AccountSettings() {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.get("/getProfile", {
+      const response = await axiosInstance.get("/api/user/getProfile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -91,7 +91,7 @@ function AccountSettings() {
       formData.append("profileImage", values.profileImage);
 
       const token = localStorage.getItem("token");
-      const response = await axiosInstance.put("/updateProfile", formData, {
+      const response = await axiosInstance.put("/api/user/updateProfile", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
