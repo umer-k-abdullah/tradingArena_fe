@@ -18,7 +18,7 @@ const ResetPassword = () => {
   const handleSubmit = async (data) => {
     try {
       const response = await axiosInstance.post(
-        `/resetPassword/${id}/${token}`,
+        `/api/password/resetPassword/${id}/${token}`,
         data
       );
       toast.success("Password  changes successfuly");

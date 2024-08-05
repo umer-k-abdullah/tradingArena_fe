@@ -37,7 +37,7 @@ const FriendsListing = () => {
       try {
         setIsLoading(true);
         const token = localStorage.getItem("token");
-        const response = await axiosInstance.get("/getFriendsList", {
+        const response = await axiosInstance.get("/api/friend/getFriendsList", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
