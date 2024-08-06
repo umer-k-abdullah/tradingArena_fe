@@ -83,6 +83,8 @@ const BattleArena = () => {
               <InviteCard
                 key={index}
                 id={ele.id}
+                senderId={ele.senderId}
+                recieverId={ele.receiverId}
                 userId={ele.Sender.id}
                 firstName={ele.Sender.firstName}
                 lastName={ele.Sender.lastName}
