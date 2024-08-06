@@ -18,9 +18,11 @@ import LeadersBoard from "./modules/LeadersBoard/Pages/LeadersBoard";
 import AccountSettings from "./modules/Profile/Pages/AccountSettings";
 import Profile from "./modules/Profile/Pages/Profile";
 import Matchmaking from "./modules/Matchmaking/Pages/Matchmaking";
+import { SocketProvider } from "./context/socketContext";
 
 const App = () => {
   return (
+    <SocketProvider>
     <div className="w-screen h-screen">
       <ToastContainer />
       <Routes>
@@ -48,6 +50,7 @@ const App = () => {
         </Route>
       </Routes>
     </div>
+    </SocketProvider>
   );
 };
 

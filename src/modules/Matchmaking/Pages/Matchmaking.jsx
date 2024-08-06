@@ -102,7 +102,7 @@ const Matchmaking = () => {
   }, []);
 
   useEffect(() => {
-    console.log("oponent : ", opponentData);
+    console.log("opponent : ", opponentData);
   }, [opponentData]);
 
   return (
@@ -150,7 +150,11 @@ const Matchmaking = () => {
             }
           />
         ) : (
-          <Oponent />
+          noOpponentMessage ? (
+            <p>{noOpponentMessage}</p>
+          ) : (
+            <Oponent />
+          )
         )}
       </div>
     </div>
