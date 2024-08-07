@@ -59,7 +59,13 @@ const BattleArena = () => {
       path: "/social",
     },
   ];
-  const invites = [];
+
+  const removeRequest = (id) => {
+    setChallengeRequest((prevRequests) =>
+      prevRequests.filter((request) => request.id !== id)
+    );
+  };
+
   return (
     <div className="h-full w-full pt-20 text-white pl-36 gap-[20px] flex flex-col font-poppins">
       <div className="mx-auto w-[75%]">
@@ -84,7 +90,7 @@ const BattleArena = () => {
                 key={index}
                 id={ele.id}
                 senderId={ele.senderId}
-                recieverId={ele.receiverId}
+                recieverId={ele.recieverId}
                 userId={ele.Sender.id}
                 firstName={ele.Sender.firstName}
                 lastName={ele.Sender.lastName}
@@ -92,6 +98,7 @@ const BattleArena = () => {
                 username={ele.Sender.username}
                 countries={countries}
                 country={ele.Sender.country}
+                removeRequest={removeRequest}
               />
             ))}
           </div>

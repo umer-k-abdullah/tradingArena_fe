@@ -61,6 +61,21 @@ const FriendsListing = () => {
       friend.username.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  useEffect(() => {
+    const getChallengerRequestSent = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axiosInstance.get(
+          "/api/challenge/displayChallengeRequestsSent",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        console.log("challenge sent", response);
+      } catch (error) {}
+    };
+
+    getChallengerRequestSent();
+  }, []);
+
   return (
     <div className="text-white mt-[9px]">
       <FriendsSearch setSearchTerm={setSearchTerm} />
