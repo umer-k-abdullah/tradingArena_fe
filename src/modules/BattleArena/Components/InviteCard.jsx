@@ -44,7 +44,7 @@ const InviteCard = ({
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get(
-        `/api/challenge/declineChallenge/${id}`,
+        `/api/challenge/declineChallenge/${senderId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("challenge declined");
