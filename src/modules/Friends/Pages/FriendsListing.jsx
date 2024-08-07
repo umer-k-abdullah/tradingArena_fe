@@ -10,6 +10,7 @@ const FriendsListing = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [countries, setCountries] = useState("");
+  const [challengeSent, setChallengeSent] = useState([]);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -42,7 +43,7 @@ const FriendsListing = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log(response.data);
+        console.log("friends listing : ", response.data);
         setFriends(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -69,7 +70,8 @@ const FriendsListing = () => {
           "/api/challenge/displayChallengeRequestsSent",
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        console.log("challenge sent", response);
+        console.log("challenge sent", response?.data);
+        setChallengeSent(response?.data);
       } catch (error) {}
     };
 
@@ -93,6 +95,7 @@ const FriendsListing = () => {
               username={ele.username}
               countries={countries}
               country={ele.country}
+              // recieverId={}
             />
           ))
         ) : (
