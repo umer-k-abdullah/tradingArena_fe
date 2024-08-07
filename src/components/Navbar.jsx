@@ -5,6 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import NotificationCard from "./NotificationCard";
 import { toast } from "react-toastify";
+import { useSocket } from "../context/socketContext";
+
+
+const SOCKET_URL = "http://localhost:3304";
 
 function Navbar() {
   const [userIsOpen, setUserIsOpen] = useState(false);
@@ -12,6 +16,8 @@ function Navbar() {
   const [userProfile, setUserProfile] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const socket = useSocket();
+
   const [memberSince, setMemberSince] = useState();
   const handleAccountSettingsClick = () => {
     navigate("/account-settings", { state: { from: location.pathname } });
@@ -46,9 +52,19 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await axiosInstance.get("/api/auth/logout");
+  
+      // Socket from context
+      const token = localStorage.getItem("token");
+      if (token) {
+        socket.emit('logout', token);
+      }
+  
+      localStorage.removeItem("token");
+      localStorage.removeItem("userData");
       navigate("/");
     } catch (error) {
       toast.error(error.message);
+      console.log(error.message)
     }
   };
 
