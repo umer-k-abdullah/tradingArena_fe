@@ -4,6 +4,7 @@ import axiosInstance from "../utils/axios"; // Add import for axiosInstance
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import NotificationCard from "./NotificationCard";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [userIsOpen, setUserIsOpen] = useState(false);
@@ -41,6 +42,15 @@ function Navbar() {
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axiosInstance.get("/api/auth/logout");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="absolute top-0 left-0 pl-[75px] w-screen h-[80px] z-11 flex justify-between px-10 items-center">
@@ -153,7 +163,7 @@ function Navbar() {
               <hr className="w-[98%] border border-[#edf1faB3] mx-auto" />
               <div
                 className="py-3 px-4 hover:bg-[#161616] cursor-pointer text-red-500 flex items-center gap-2"
-                onClick={() => navigate("/")}
+                onClick={handleLogout}
               >
                 <img
                   src="assets/icons/sign-out.png"

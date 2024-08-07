@@ -13,6 +13,7 @@ const InviteCard = ({
   profileImage,
   senderId,
   recieverId,
+  removeRequest,
 }) => {
   const [countryFlag, setCountryFlag] = useState("");
   useEffect(() => {
@@ -32,6 +33,7 @@ const InviteCard = ({
         `/api/challenge/acceptChallenge/${senderId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      removeRequest(id);
       toast.success("Challenge accepted");
     } catch (error) {
       toast.error(error.message);
@@ -42,10 +44,11 @@ const InviteCard = ({
     try {
       const token = localStorage.getItem("token");
       const response = await axiosInstance.get(
-        `/api/challenge/declineChallenge/${recieverId}`,
+        `/api/challenge/declineChallenge/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("challenge declined");
+      removeRequest(id);
     } catch (error) {
       toast.error(error.message);
     }
