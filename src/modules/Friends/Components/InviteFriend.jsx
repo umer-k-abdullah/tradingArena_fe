@@ -32,8 +32,11 @@ const InviteFriend = ({
       console.log(response);
       toast.success("Challenge request sent");
     } catch (error) {
-      toast.error(error.message);
-    }
+      if (error.response && error.response.status === 409) {
+        toast.error(error.response.data.message);
+    } else {
+        toast.error(error.message);
+    }    }
   };
 
   return (
