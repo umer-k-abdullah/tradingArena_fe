@@ -4,7 +4,8 @@ import { string, object, boolean } from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
-import { useSocket } from "../../../context/socketContext";
+import io from 'socket.io-client';
+//import { useSocket } from "../../../context/socketContext";
 
 const SOCKET_URL = "http://localhost:3304";
 
@@ -16,7 +17,7 @@ const signinSchema = object({
 
 const Signin = () => {
   const navigate = useNavigate();
-  const socket = useSocket();
+  //const socket = useSocket();
 
   const handleSubmit = async (values) => {
     try {
@@ -27,8 +28,12 @@ const Signin = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
 
-      socket.emit('authenticate', token);
+      const socket = io(SOCKET_URL, {
+        transports: ["websocket"],
+        withCredentials: true,
+      });
 
+      socket.emit('authenticate', token);
       navigate("/dashboard");
       toast.success("user signin successfuly");
     } catch (error) {
