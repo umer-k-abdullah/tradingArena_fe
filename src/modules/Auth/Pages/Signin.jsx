@@ -4,6 +4,9 @@ import { string, object, boolean } from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../utils/axios";
 import { toast } from "react-toastify";
+import io from "socket.io-client";
+
+const SOCKET_URL = "http://localhost:3304";
 
 const signinSchema = object({
   identifier: string().required(),
@@ -17,8 +20,17 @@ const Signin = () => {
     try {
       const response = await axiosInstance.post("/api/auth/signin", values);
       console.log(response);
-      localStorage.setItem("token", response.data.accessToken);
+
+        const token = response.data.accessToken;
+      localStorage.setItem("token", token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
+
+      const socket = io(SOCKET_URL, {
+        transports: ["websocket"],
+        withCredentials: true,
+      });
+
+      socket.emit('authenticate', token);
       navigate("/dashboard");
       toast.success("user signin successfuly");
     } catch (error) {
