@@ -100,7 +100,7 @@ const FriendsListing = () => {
           ))
         ) : (
           <div className="w-full h-[250px] flex justify-center items-center ">
-            <p className="text-[40px] font-zen-dots opacity-20">
+            <p className="text-[25px] font-zen-dots opacity-20">
               No Friends Found
             </p>
           </div>

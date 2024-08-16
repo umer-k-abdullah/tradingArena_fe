@@ -109,9 +109,9 @@ function Sidebar() {
                 >
                   {/* {ele.icon} */}
                   {location.pathname.startsWith(ele.path) ? (
-                    <img src={ele.activeIcon} className="" />
+                    <img src={ele.activeIcon} className="h-4" />
                   ) : (
-                    <img src={ele.icon} className="" />
+                    <img src={ele.icon} className="h-4" />
                   )}
                 </span>
                 {/* <img
@@ -125,17 +125,17 @@ function Sidebar() {
         </div>
         <div className="flex flex-col items-center gap-[38px] mb-11">
           <div>
-            <span className="text-white text-xl">
+            <span className="text-white text-lg">
               <FaInfo />
             </span>
           </div>
           <div onClick={handleSound}>
             {!isMute ? (
-              <span className="text-white text-xl">
+              <span className="text-white text-lg">
                 <FaVolumeUp />
               </span>
             ) : (
-              <span className="text-white text-xl">
+              <span className="text-white text-lg">
                 <FaVolumeMute />
               </span>
             )}
@@ -156,25 +156,25 @@ function Sidebar() {
           <i>{pin ? <LuPin /> : <LuPinOff />}</i>
         </div>
         <div>
-          <div className="mt-[6px] mb-[35px] h-[50px] ml-1">
+          <div className="mt-[12px] mb-[15px] h-[50px] ml-3">
             <img
               src="/assets/icons/logo-text.png"
               alt=""
-              className="h-[72px]"
+              className="h-[60px]"
             />
           </div>
-          <div className="flex flex-col gap-[33.5px] mt-5">
+          <div className="flex flex-col gap-[25px] mt-6">
             {sidebarTopLinks.map((ele, index) => (
               <div
                 key={index}
-                className="h-7 flex items-center  -mt-[ 1px] ml-4"
+                className="h-7 flex items-center ml-4"
               >
                 <p
                   className={`font-poppins ${
                     location.pathname.startsWith(ele.path)
                       ? "text-themeGreen"
                       : "text-white"
-                  }  leading-[32.02px] text-[20px] cursor-pointer`}
+                  }  leading-[32.02px] text-[16px] cursor-pointer`}
                   onClick={() => handleClick(index, ele.path)}
                 >
                   {ele.name}
@@ -183,14 +183,14 @@ function Sidebar() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] mb-10 font-poppins">
+        <div className="flex flex-col gap-7 mb-[38px] font-poppins">
           <div className="h-7 flex items-center -mt-[1px] ml-4">
-            <p className=" text-white leading-[32.02px] text-[20px] cursor-pointer">
+            <p className=" text-white leading-[32.02px] text-[16px] cursor-pointer">
               Help
             </p>
           </div>
           <div className="h-7 flex items-center -mt-[1px] ml-4">
-            <p className=" text-white leading-[32.02px] text-[20px] cursor-pointer">
+            <p className=" text-white leading-[32.02px] text-[16px] cursor-pointer">
               Sound
             </p>
           </div>

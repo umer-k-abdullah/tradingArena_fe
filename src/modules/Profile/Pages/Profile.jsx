@@ -8,7 +8,7 @@ function Profile() {
   const [memberSince, setMemberSince] = useState("");
   const [countryFlag, setCountryFlag] = useState("");
   const [userStats, setUserStats] = useState({});
-  const [skeletonStatus, setSkeletonStatus] = useState(true);
+  const [skeletonStatus, setSkeletonStatus] = useState(false);
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -264,7 +264,7 @@ function Profile() {
   return (
     <div className="h-full w-full mt-20 pt-2 pl-32 gap-7 flex flex-col overflow-y-scroll custom-scrollbar">
       <div className="mx-auto w-[75%] flex justify-between">
-        <h1 className="font-zen-dots text-white text-3xl">PROFILE</h1>
+        <h1 className="font-zen-dots text-white text-2xl">PROFILE</h1>
         <button className="bg-themeGreen font-poppins h-9 w-20 rounded-md font-medium form-btn-shadow">
           Edit
         </button>

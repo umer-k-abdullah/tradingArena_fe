@@ -69,7 +69,7 @@ const BattleArena = () => {
   return (
     <div className="h-full w-full pt-20 text-white pl-36 gap-[20px] flex flex-col font-poppins">
       <div className="mx-auto w-[75%]">
-        <h1 className="font-zen-dots text-white text-3xl">BATTLE ARENA</h1>
+        <h1 className="font-zen-dots text-white text-xl">BATTLE ARENA</h1>
       </div>
       <div className="mx-auto font-poppins w-[75%] flex justify-between items-center gap-6 h-1/3">
         {topCards.map((ele, index) => (
@@ -82,7 +82,7 @@ const BattleArena = () => {
         ))}
       </div>
       <div className="flex flex-col gap-2 mx-auto w-[75%] my-3  font-poppins">
-        <h3 className="text-[20px] leading-[30px] font-light">Match Invites</h3>
+        <h3 className="text-[17px] leading-[30px] font-light">Match Invites</h3>
         {challengeRequests && challengeRequests.length > 0 ? (
           <div className="flex flex-col justify-start items-start gap-4">
             {challengeRequests.map((ele, index) => (
@@ -104,7 +104,7 @@ const BattleArena = () => {
           </div>
         ) : (
           <div className="mx-auto rounded-[10px] flex justify-center items-center w-full h-[75px] mt-20">
-            <p className="text-[30px] leading-[30px] text-center text-white opacity-50 font-zen-dots">
+            <p className="text-[25px] leading-[30px] text-center text-white opacity-50 font-zen-dots">
               No Invites at the moment
             </p>
           </div>

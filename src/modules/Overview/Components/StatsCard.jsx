@@ -10,7 +10,7 @@ function StatsCard({
   // var [matchStatus, SetMatchStatus] = useState();
   return (
     <div
-      className={`grid grid-cols-6 w-full text-white items-center p-3 justify-between h-[28%] bg-themeBlack border rounded-md ${
+      className={`grid grid-cols-6 w-full text-white items-center p-3 justify-between h-24 bg-themeBlack border rounded-md ${
         matchStatus == "Won"
           ? "border-themeGreen stats-card-win-shadow"
           : "border-red-700 stats-card-lose-shadow"
@@ -22,13 +22,13 @@ function StatsCard({
         <div className="rounded-full bg-white h-10 w-10">
           {/* <img src="" alt="" /> */}
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col text-sm">
           <span>Name</span>
           <span>@username</span>
         </div>
       </div>
       {/* Time Stamp */}
-      <div className="flex items-center flex-col ">
+      <div className="flex items-center flex-col text-sm">
         <span>{timeStamp.date}</span>
         <span>{timeStamp.time}</span>
       </div>
@@ -37,7 +37,7 @@ function StatsCard({
         <span
           className={`${
             matchStatus == "Won" ? "text-themeGreen" : "text-[#FF4D42]"
-          }`}
+          } text-sm`}
         >
           {matchStatus}
         </span>
@@ -45,11 +45,11 @@ function StatsCard({
 
       {/* Battle Time */}
       <div className="flex justify-center">
-      <span className="">{battleTime}</span>
+      <span className="text-sm">{battleTime}</span>
       </div>
       
       {/* Skill Score */}
-      <div className="flex items-center flex-col">
+      <div className="flex items-center flex-col text-sm">
         <span
           className={`${
             matchStatus == "Won" ? "text-themeGreen" : "text-[#FF4D42]"
@@ -60,7 +60,7 @@ function StatsCard({
         <span>{skillScore.score}</span>
       </div>
       {/* Total Profit */}
-      <div className="flex items-center pl-3 flex-col">
+      <div className="flex items-center pl-3 flex-col text-sm">
         <span
           className={`${
             matchStatus == "Won" ? "text-themeGreen" : "text-[#FF4D42]"
