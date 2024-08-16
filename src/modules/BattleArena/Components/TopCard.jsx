@@ -8,8 +8,8 @@ const TopCard = ({ name, icon, path }) => {
       className="flex flex-col justify-center items-center bg-[#0D0D0D] border-[#EDF1FA] border card-shadow rounded-xl w-full gap-1 h-full cursor-pointer"
       onClick={() => navigate(path)}
     >
-      <img src={icon} className="h-12" alt="" />
-      <p className="text-[#EDF1FA] text-base">{name}</p>
+      <img src={icon} className="h-9" alt="" />
+      <p className="text-[#EDF1FA] text-sm">{name}</p>
     </div>
   );
 };

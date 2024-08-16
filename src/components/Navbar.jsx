@@ -5,10 +5,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import NotificationCard from "./NotificationCard";
 import { toast } from "react-toastify";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
 //import { useSocket } from "../context/socketContext";
-
 
 const SOCKET_URL = "http://localhost:3304";
 
@@ -54,47 +53,47 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await axiosInstance.get("/api/auth/logout");
-  
+
       // Remove token and user data from localStorage
-    const token = localStorage.getItem("token");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userData");
+      const token = localStorage.getItem("token");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userData");
 
-    // Initialize socket connection and emit logout event
-    const socket = io(SOCKET_URL, {
-      transports: ["websocket"],
-      withCredentials: true,
-    });
+      // Initialize socket connection and emit logout event
+      const socket = io(SOCKET_URL, {
+        transports: ["websocket"],
+        withCredentials: true,
+      });
 
-    // Emit an event to update user status to offline
-    socket.emit('logout', token);
+      // Emit an event to update user status to offline
+      socket.emit("logout", token);
       navigate("/");
     } catch (error) {
       toast.error(error.message);
-      console.log(error.message)
+      console.log(error.message);
     }
   };
 
   return (
-    <div className="absolute top-0 left-0 pl-[75px] w-screen h-[80px] z-11 flex justify-between px-10 items-center">
+    <div className="absolute top-0 left-0 pl-[75px] w-screen h-[60px] z-11 flex justify-between px-10 items-center md:bg-transparent bg-themeBlack">
       <div>
         <img src="/assets/images/logo-main.png" alt="" className="sr-only" />
       </div>
       <div className="flex gap-4">
         <div
-          className="w-11 h-11 rounded-full border cursor-pointer border-[#EDF1FA] flex justify-center items-center gray-shadow"
+          className="w-9 h-9 rounded-full border cursor-pointer border-[#EDF1FA] flex justify-center items-center gray-shadow"
           onMouseEnter={() => setNotificationOpen(true)}
-          onMouseLeave={() => setNotificationOpen(false)}
+          onMouseLeave={()=> setNotificationOpen(false)}
         >
-          <i className="text-white text-xl">
+          <i className="text-white text-lg">
             <FaBell />
           </i>
           {notificationOpen && (
-            <div className="absolute h-96 gap-2 flex flex-col top-[60px] p-5 right-56 w-[480px] bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md z-10">
+            <div className="absolute h-80 gap-2 flex flex-col top-[45px] p-5 right-48 w-[450px] bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md z-10">
               <i className="text-4xl absolute text-[#FFFFFFCC] top-2 right-2 cursor-pointer">
-                <IoClose />
+                <IoClose onClick={() => setNotificationOpen(false)}/>
               </i>
-              <h2 className="font-zen-dots text-2xl">NOTIFICATIONS</h2>
+              <h2 className="font-zen-dots text-xl">NOTIFICATIONS</h2>
               <div className="flex flex-col pr-2 gap-2 overflow-y-auto custom-scrollbar">
                 <NotificationCard
                   title={"Battle Challenge"}
@@ -116,22 +115,22 @@ function Navbar() {
           )}
         </div>
         <div
-          className="w-40 h-11 bg-[#010101] text-white flex justify-between items-center font-poppins border cursor-pointer border-[#EDF1FA] gray-shadow rounded-full pr-3 relative"
+          className="w-36 h-9 bg-[#010101] text-white flex justify-between items-center font-poppins border cursor-pointer border-[#EDF1FA] gray-shadow rounded-full pr-3 relative"
           onMouseEnter={() => setUserIsOpen(true)}
           onMouseLeave={() => setUserIsOpen(false)}
         >
-          <div className="rounded-full w-11 h-full flex justify-center items-center border border-[#EDF1FA] bg-[#161616]">
+          <div className="rounded-full w-9 h-full flex justify-center items-center border border-[#EDF1FA] bg-[#161616]">
             <img
               src={` ${
                 userProfile && userProfile.profileImage != null
                   ? userProfile.profileImage
-                  : "assets/images/avatar1.png"
+                  : "/assets/images/avatar1.png"
               }`}
               alt="User Avatar"
-              className="h-10 rounded-full"
+              className="h-9 rounded-full border border-[#EDF1FA]"
             />
           </div>
-          <span>
+          <span className="text-sm">
             {userProfile && userProfile.firstName && userProfile.lastName
               ? `${userProfile.firstName} ${userProfile.lastName[0]}.`
               : "Loading..."}
@@ -141,19 +140,19 @@ function Navbar() {
           </i>
 
           {userIsOpen && (
-            <div className="absolute top-11 overflow-hidden right-0 w-60 bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md shadow-lg z-10">
+            <div className="absolute top-8 overflow-hidden right-0 w-52 bg-[#010101] text-white border mt-1 border-[#EDF1FA] rounded-md shadow-lg z-10">
               <div className="py-2 px-2 cursor-pointer flex items-center gap-2">
                 <img
                   src={` ${
                     userProfile && userProfile.profileImage != null
                       ? userProfile.profileImage
-                      : "assets/images/avatar1.png"
+                      : "/assets/images/avatar1.png"
                   }`}
                   alt="User Avatar"
                   className="h-10 rounded-full"
                 />
                 <div className="flex flex-col gap-1">
-                  <span>
+                  <span className="text-sm">
                     {userProfile
                       ? userProfile.firstName + " " + userProfile.lastName
                       : "Loading..."}
@@ -169,19 +168,19 @@ function Navbar() {
                 onClick={handleAccountSettingsClick}
               >
                 <img
-                  src="assets/icons/user-settings.png"
+                  src="/assets/icons/user-settings.png"
                   alt="User Settings"
-                  className="h-10"
+                  className="h-8"
                 />
-                <span>Account Settings</span>
+                <span className="text-sm">Account Settings</span>
               </div>
               <div className="py-2 px-4 hover:bg-[#161616] cursor-pointer flex items-center gap-2">
                 <img
-                  src="assets/icons/notification-settings.png"
+                  src="/assets/icons/notification-settings.png"
                   alt="User Settings"
-                  className="h-7"
+                  className="h-5"
                 />
-                <span>Notification Settings</span>
+                <span className="text-sm">Notification Settings</span>
               </div>
               <hr className="w-[98%] border border-[#edf1faB3] mx-auto" />
               <div
@@ -189,11 +188,11 @@ function Navbar() {
                 onClick={handleLogout}
               >
                 <img
-                  src="assets/icons/sign-out.png"
+                  src="/assets/icons/sign-out.png"
                   alt="Sign Out"
-                  className="h-7"
+                  className="h-5"
                 />
-                <span>Sign Out</span>
+                <span className="text-sm">Sign Out</span>
               </div>
             </div>
           )}

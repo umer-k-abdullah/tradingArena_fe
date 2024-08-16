@@ -120,19 +120,19 @@ function LeadersBoard() {
   // ];  
 
   return (
-    <div className="h-full w-full pt-20 pl-32 gap-3 flex flex-col">
+    <div className="h-full w-full pt-14 pl-32 gap-3 flex flex-col">
       <div className="mx-auto w-[75%]">
-        <h1 className="font-zen-dots text-white text-3xl">LEADERSBOARD</h1>
+        <h1 className="font-zen-dots text-white text-xl">LEADERSBOARD</h1>
       </div>
-      <div className="flex flex-col gap-2 mx-auto w-[75%] my-3 font-poppins">
+      <div className="flex flex-col gap-2 mx-auto w-[75%] h-[80%] my-3 font-poppins">
         <div className="grid grid-cols-6 px-14">
           {statsLabels.map((elem) => (
             <div className="flex justify-center">
-              <span className="text-[#EDF1FAB2] text-base">{elem}</span>
+              <span className="text-[#EDF1FAB2] text-sm">{elem}</span>
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-3 overflow-y-auto h-full custom-scrollbar p-2">
+        <div className="flex flex-col gap-3 overflow-y-auto h-full mx-auto custom-scrollbar p-2">
           {user1Stats.map((ele) => (
             <LeadersboardStatsCard
               rank={ele.rank}

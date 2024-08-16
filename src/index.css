@@ -86,14 +86,14 @@ input[type="checkbox"].appearance-none:checked {
   transition: box-shadow 0.2s;
 }
 .stats-card-win-shadow:hover {
-  box-shadow: 0 0 15px rgba(1, 227, 117, 0.8);
+  box-shadow: 0 0 10px rgba(1, 227, 117, 0.8);
 }
 .stats-card-lose-shadow {
   box-shadow: 0 0 5px rgba(255, 1, 1, 0.8);
   transition: box-shadow 0.2s;
 }
 .stats-card-lose-shadow:hover {
-  box-shadow: 0 0 15px rgba(255, 1, 1, 0.8);
+  box-shadow: 0 0 10px rgba(255, 1, 1, 0.8);
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */

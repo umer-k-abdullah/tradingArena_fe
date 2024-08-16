@@ -7,11 +7,11 @@ function NotificationCard({time, title, message}) {
       <i className="text-2xl absolute text-[#FFFFFFCC] top-1 right-1 cursor-pointer">
         <IoClose />
       </i>
-      <div>
-        <img src="assets/icons/1stPlace.png" alt="" className="h-20"/>
+      <div className="ml-2">
+        <img src="assets/icons/1stPlace.png" alt="" className="h-12"/>
       </div>
-      <div className="flex-1 flex flex-col">
-        <span className="text-[#EDF1FA80]">{time}</span>
+      <div className="ml-3 flex-1 flex flex-col">
+        <span className="text-[#EDF1FA80] text-xs">{time}</span>
         <span className="text-themeGray text-sm">{title}</span>
         <span className="text-sm">{message}</span>
       </div>

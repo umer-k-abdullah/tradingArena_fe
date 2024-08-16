@@ -18,7 +18,7 @@ function LeadersboardStatsCard({ rank, flag, skillScore, totalProfit, win }) {
   }
   return (
     <div
-      className={`grid grid-cols-6 w-full text-white items-center p-3 h-[28%] bg-[#0D0D0D] border gray-shadow border-themeGray rounded-md cursor-pointer px-10`}
+      className={`grid grid-cols-6 text-white items-center p-3 h-[28%] bg-[#0D0D0D] border gray-shadow border-themeGray rounded-md cursor-pointer px-10 text-sm`}
     >
       {/* Rank */}
       <div className=" flex justify-center">
@@ -26,7 +26,7 @@ function LeadersboardStatsCard({ rank, flag, skillScore, totalProfit, win }) {
         </div>
       {/* Player */}
       <div className="flex justify-center items-center gap-2">
-        <div className="rounded-full bg-white h-10 w-10">
+        <div className="rounded-full bg-white bg-opacity-50 h-10 min-w-10">
           {/* <img src="" alt="" /> */}
         </div>
         <div className="flex flex-col">
